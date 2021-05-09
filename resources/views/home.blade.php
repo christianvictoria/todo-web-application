@@ -7,8 +7,13 @@
 
     <title>ToDo - WebApp</title>
     
+    <script src="{{ asset('js/fa.js') }}" defer></script>
+    <script src="{{ asset('js/onclickUpload.js') }}" defer></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
     <!-- Styles -->
     <link type="text/css" rel="stylesheet" href="{{ mix('css/app.css') }}">  
+    <link type="text/css" rel="stylesheet" href="{{ asset('css/home.css') }}">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/fontawesome.min.css" />  
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" />  
@@ -17,22 +22,24 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
         }
     </style>
 </head>
-<div class="container">
-    <nav class="navbar sticky-top navbar-light p-3 mb-2" style="box-shadow: 0px 1px 10px #999;">
-        <div class="container-fluid">
-            <a class="navbar-brand ">TODO</a>
-            <div class="d-flex">
-                <a class="nav-link black" href="">Logout</a>
-            </div>
+<nav class="navbar sticky-top navbar-light p-3 mb-3 set-bg-white" style="box-shadow: 0px 1px 10px #999;">
+    <div class="container-fluid">
+        <a class="navbar-brand"><strong>ToDo - WEB APPLICATION</strong></a>
+        <div class="d-flex">
+            <a class="nav-link black" href="">Logout</a>
         </div>
-    </nav>
+    </div>
+</nav>
+
+<div class="container">
+
     <!-- <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -54,73 +61,288 @@
     <div class="row justify-content-center align-items-start">
         <div class="col">
             <div class="input-group">
-                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-                <span class="input-group-text">Search</span>
+                <input type="text" class="form-control" placeholder="Search task here..">
+                <span class="input-group-text">
+                    <i class="fas fa-search"></i>
+                </span>
             </div>
-
+        
+        <div class="set-height-tasks">
+            <div class="p-3 sticky-top border set-bg-white">
+                <h3 class="text-center"><strong>My Tasks</strong></h3>
+            </div>
             <ol class="list-group list-group-numbered">
                 <li class="list-group-item d-flex justify-content-between align-items-start">
                     <div class="ms-2 me-auto">
                         <div class="fw-bold">Subheading</div>
                         Cras justo odio
                     </div>
-                    <span class="badge bg-primary rounded-pill">14</span>
+                    <span>
+                        <i class="fal fa-thumbtack mr-2 icons-setting"></i>
+                        <i class="far fa-trash-alt icons-setting"></i>
+                    </span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-start">
                     <div class="ms-2 me-auto">
                         <div class="fw-bold">Subheading</div>
                         Cras justo odio
                     </div>
-                    <span class="badge bg-primary rounded-pill">14</span>
+                    <span>
+                        <i class="fal fa-thumbtack mr-2"></i>
+                        <i class="far fa-trash-alt"></i>
+                    </span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-start">
                     <div class="ms-2 me-auto">
                         <div class="fw-bold">Subheading</div>
                         Cras justo odio
                     </div>
-                    <span class="badge bg-primary rounded-pill">14</span>
+                    <span>
+                        <i class="fal fa-thumbtack mr-2"></i>
+                        <i class="far fa-trash-alt"></i>
+                    </span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">Subheading</div>
+                        Cras justo odio
+                    </div>
+                    <span>
+                        <i class="fal fa-thumbtack mr-2"></i>
+                        <i class="far fa-trash-alt"></i>
+                    </span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">Subheading</div>
+                        Cras justo odio
+                    </div>
+                    <span>
+                        <i class="fal fa-thumbtack mr-2"></i>
+                        <i class="far fa-trash-alt"></i>
+                    </span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">Subheading</div>
+                        Cras justo odio
+                    </div>
+                    <span>
+                        <i class="fal fa-thumbtack mr-2"></i>
+                        <i class="far fa-trash-alt"></i>
+                    </span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">Subheading</div>
+                        Cras justo odio
+                    </div>
+                    <span>
+                        <i class="fal fa-thumbtack mr-2"></i>
+                        <i class="far fa-trash-alt"></i>
+                    </span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">Subheading</div>
+                        Cras justo odio
+                    </div>
+                    <span>
+                        <i class="fal fa-thumbtack mr-2"></i>
+                        <i class="far fa-trash-alt"></i>
+                    </span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">Subheading</div>
+                        Cras justo odio
+                    </div>
+                    <span>
+                        <i class="fal fa-thumbtack mr-2"></i>
+                        <i class="far fa-trash-alt"></i>
+                    </span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">Subheading</div>
+                        Cras justo odio
+                    </div>
+                    <span>
+                        <i class="fal fa-thumbtack mr-2"></i>
+                        <i class="far fa-trash-alt"></i>
+                    </span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">Subheading</div>
+                        Cras justo odio
+                    </div>
+                    <span>
+                        <i class="fal fa-thumbtack mr-2"></i>
+                        <i class="far fa-trash-alt"></i>
+                    </span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">Subheading</div>
+                        Cras justo odio
+                    </div>
+                    <span>
+                        <i class="fal fa-thumbtack mr-2"></i>
+                        <i class="far fa-trash-alt"></i>
+                    </span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">Subheading</div>
+                        Cras justo odio
+                    </div>
+                    <span>
+                        <i class="fal fa-thumbtack mr-2"></i>
+                        <i class="far fa-trash-alt"></i>
+                    </span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">Subheading</div>
+                        Cras justo odio
+                    </div>
+                    <span>
+                        <i class="fal fa-thumbtack mr-2"></i>
+                        <i class="far fa-trash-alt"></i>
+                    </span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">Subheading</div>
+                        Cras justo odio
+                    </div>
+                    <span>
+                        <i class="fal fa-thumbtack mr-2"></i>
+                        <i class="far fa-trash-alt"></i>
+                    </span>
                 </li>
             </ol>
+        </div>
 
         </div>
         <div class="col">
-            <div class="">
-                <textarea class="form-control" placeholder="Add tasks here.. " style="height: 450px"></textarea>
+            <div>
+                <textarea class="form-control" placeholder="Add tasks here.." style="height: 515px"></textarea>
             </div>
             <div class="shadow-sm p-3">
-            <div class="d-grid gap-1 d-md-flex p-3 justify-content-md-start">
-                     <i class="far fa-image fa-2x"></i>
-                </div>
-    
-                <div class="d-grid gap-1 d-md-flex justify-content-md-end">
-                    <button type="button" class="btn btn-primary">Save</button>
-                </div>
+                <div class="row">
+                    <div class="col-sm-1 mt-2 mr-3">
+                        <input class="hidden" id="upload" type="file"/>
+                        <a href="" class="text-decor-null" id="upload_link"><i class="far fa-images fa-2x icon-task-setting text-decor-null"></i></a>
+                    </div>
+                    <div class="col-sm-1">
+                        <i class="far fa-calendar-alt mt-2 fa-2x icon-task-setting"></i>
+                    </div>
+                    <div class="col d-flex justify-content-end">
+                        <button type="button" class="btn btn-primary"><strong>Save</strong></button>
+                    </div>
+                  </div>
+
             </div>
         </div>
         <div class="col">
-            <ol class="list-group list-group-numbered">
-                <li class="list-group-item d-flex justify-content-between align-items-start">
-                    <div class="ms-2 me-auto">
-                        <div class="fw-bold">Subheading</div>
-                        Cras justo odio
-                    </div>
-                    <span class="badge bg-primary rounded-pill">14</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-start">
-                    <div class="ms-2 me-auto">
-                        <div class="fw-bold">Subheading</div>
-                        Cras justo odio
-                    </div>
-                    <span class="badge bg-primary rounded-pill">14</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-start">
-                    <div class="ms-2 me-auto">
-                        <div class="fw-bold">Subheading</div>
-                        Cras justo odio
-                    </div>
-                    <span class="badge bg-primary rounded-pill">14</span>
-                </li>
-            </ol>
+
+            <!-- Pinned Task Part -->
+            <div class="set-height-pinned-task">
+                <div class="p-3 sticky-top border set-bg-white">
+                    <h3 class="text-center"><strong>Pinned Tasks</strong></h3>
+                </div>
+                <ol class="list-group list-group-numbered">
+                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                            <div class="fw-bold">Subheading</div>
+                            Cras justo odio
+                        </div>
+                        <span>
+                            <i class="fas fa-thumbtack icons-setting"></i>
+                        </span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                            <div class="fw-bold">Subheading</div>
+                            Cras justo odio
+                        </div>
+                        <span>
+                            <i class="fas fa-thumbtack"></i>
+                        </span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                            <div class="fw-bold">Subheading</div>
+                            Cras justo odio
+                        </div>
+                        <span>
+                            <i class="fas fa-thumbtack"></i>
+                        </span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                            <div class="fw-bold">Subheading</div>
+                            Cras justo odio
+                        </div>
+                        <span>
+                            <i class="fas fa-thumbtack"></i>
+                        </span>
+                    </li>
+                </ol>
+            </div>
+
+            <br>
+            <!-- Missed Tasks -->
+            <div class="set-height-pinned-task">
+                <div class="p-3 sticky-top border set-bg-white">
+                    <h3 class="text-center"><strong>Missed Tasks</strong></h3>
+                </div>
+                <ol class="list-group list-group-numbered">
+                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                            <div class="fw-bold">Subheading</div>
+                            Cras justo odio
+                        </div>
+                        <span>
+                            <i class="fad fa-exclamation-circle mr-2 icons-setting"></i>   
+                            <i class="far fa-trash-alt icons-setting"></i>
+                        </span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                            <div class="fw-bold">Subheading</div>
+                            Cras justo odio
+                        </div>
+                        <span>
+                            <i class="fad fa-exclamation-circle mr-2"></i>
+                            <i class="far fa-trash-alt"></i>
+                        </span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                            <div class="fw-bold">Subheading</div>
+                            Cras justo odio
+                        </div>
+                        <span>
+                            <i class="fad fa-exclamation-circle mr-2"></i>
+                            <i class="far fa-trash-alt"></i>
+                        </span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                            <div class="fw-bold">Subheading</div>
+                            Cras justo odio
+                        </div>
+                        <span>
+                            <i class="fad fa-exclamation-circle mr-2"></i>
+                            <i class="far fa-trash-alt"></i>
+                        </span>
+                    </li>
+                </ol>
+            </div>
+        
         </div>
     </div>
 
