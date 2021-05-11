@@ -9,6 +9,7 @@
     
     <script src="{{ asset('js/fa.js') }}" defer></script>
     <script src="{{ asset('js/onclickUpload.js') }}" defer></script>
+    <script src="{{ asset('js/datetime.js') }}" defer></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
     <!-- Styles -->
@@ -67,9 +68,9 @@
                 </span>
             </div>
         
-        <div class="set-height-tasks">
+        <div class="set-height-tasks border" >
             <div class="p-3 sticky-top border set-bg-white">
-                <h3 class="text-center"><strong>My Tasks</strong></h3>
+                <h3 class="text-center header-size"><strong>My Tasks</strong></h3>
             </div>
             <ol class="list-group list-group-numbered">
                 <li class="list-group-item d-flex justify-content-between align-items-start">
@@ -228,7 +229,10 @@
         </div>
         <div class="col">
             <div>
-                <textarea class="form-control" placeholder="Add tasks here.." style="height: 515px"></textarea>
+            <div class="input-group">
+                <input type="text" class="form-control mb-2" placeholder="Type Title here..">
+            </div>
+                <textarea class="form-control" placeholder="Type content here.." style="height: 440px"></textarea>
             </div>
             <div class="shadow-sm p-3">
                 <div class="row">
@@ -237,7 +241,9 @@
                         <a href="" class="text-decor-null" id="upload_link"><i class="far fa-images fa-2x icon-task-setting text-decor-null"></i></a>
                     </div>
                     <div class="col-sm-1">
-                        <i class="far fa-calendar-alt mt-2 fa-2x icon-task-setting"></i>
+                    <input class="hidden" id="date" type="date"/>
+                       <a href="" id = "date_link"> <i class="far fa-calendar-alt mt-2 fa-2x icon-task-setting"></i> </a>
+                        
                     </div>
                     <div class="col d-flex justify-content-end">
                         <button type="button" class="btn btn-primary"><strong>Save</strong></button>
@@ -249,9 +255,9 @@
         <div class="col">
 
             <!-- Pinned Task Part -->
-            <div class="set-height-pinned-task">
+            <div class="set-height-pinned-task border">
                 <div class="p-3 sticky-top border set-bg-white">
-                    <h3 class="text-center"><strong>Pinned Tasks</strong></h3>
+                    <h3 class="text-center header-size"><strong>Pinned Tasks</strong></h3>
                 </div>
                 <ol class="list-group list-group-numbered">
                     <li class="list-group-item d-flex justify-content-between align-items-start">
@@ -295,9 +301,9 @@
 
             <br>
             <!-- Missed Tasks -->
-            <div class="set-height-pinned-task">
+            <div class="set-height-pinned-task border">
                 <div class="p-3 sticky-top border set-bg-white">
-                    <h3 class="text-center"><strong>Missed Tasks</strong></h3>
+                    <h3 class="text-center header-size"><strong>Missed Tasks</strong></h3>
                 </div>
                 <ol class="list-group list-group-numbered">
                     <li class="list-group-item d-flex justify-content-between align-items-start">

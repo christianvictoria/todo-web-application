@@ -1,13 +1,28 @@
 .set-height-tasks {
-    height: 550px;
-    overflow: auto;
-    overflow-x: hidden;
+    height: 505px;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    overflow-y: scroll;
+
+}
+
+.set-height-tasks::-webkit-scrollbar {
+    display: none;
+}
+
+.header-size{
+    font-size: larger;
 }
 
 .set-height-pinned-task {
-    height: 283px;
-    overflow: auto;
-    overflow-x: hidden;
+    height: 268px;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    overflow-y: scroll;
+}
+
+.set-height-pinned-task::-webkit-scrollbar {
+    display: none;
 }
 
 .set-bg-white {
@@ -34,4 +49,9 @@
 
 .text-decor-null {
     text-decoration: none;
+}
+
+
+#date{
+    display: none;
 }
