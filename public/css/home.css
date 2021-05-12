@@ -1,23 +1,22 @@
 .set-height-tasks {
-    height: 505px;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    height: 517px;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
     overflow-y: scroll;
-
 }
 
 .set-height-tasks::-webkit-scrollbar {
     display: none;
 }
 
-.header-size{
+.header-size {
     font-size: larger;
 }
 
 .set-height-pinned-task {
     height: 268px;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
     overflow-y: scroll;
 }
 
@@ -51,7 +50,6 @@
     text-decoration: none;
 }
 
-
-#date{
+#date {
     display: none;
 }

@@ -6,15 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>ToDo - WebApp</title>
-    
-    <script src="{{ asset('js/fa.js') }}" defer></script>
-    <script src="{{ asset('js/onclickUpload.js') }}" defer></script>
-    <script src="{{ asset('js/datetime.js') }}" defer></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
-    <!-- Styles -->
-    <link type="text/css" rel="stylesheet" href="{{ mix('css/app.css') }}">  
-    <link type="text/css" rel="stylesheet" href="{{ asset('css/home.css') }}">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/fontawesome.min.css" />  
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" />  
@@ -67,162 +59,24 @@
                     <i class="fas fa-search"></i>
                 </span>
             </div>
-        
-        <div class="set-height-tasks border" >
-            <div class="p-3 sticky-top border set-bg-white">
-                <h3 class="text-center header-size"><strong>My Tasks</strong></h3>
-            </div>
+
+            <div class="set-height-tasks border" >
+                <div class="p-3 sticky-top border set-bg-white">
+                    <h3 class="text-center header-size"><strong>My Tasks</strong></h3>
+                </div>
             <ol class="list-group list-group-numbered">
+                @foreach($tasks as $task)
                 <li class="list-group-item d-flex justify-content-between align-items-start">
                     <div class="ms-2 me-auto">
-                        <div class="fw-bold">Subheading</div>
-                        Cras justo odio
+                        <div class="fw-bold">{{ $task->todo_title }}</div>
+                        {{ $task->todo_content }}
                     </div>
                     <span>
                         <i class="fal fa-thumbtack mr-2 icons-setting"></i>
                         <i class="far fa-trash-alt icons-setting"></i>
                     </span>
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-start">
-                    <div class="ms-2 me-auto">
-                        <div class="fw-bold">Subheading</div>
-                        Cras justo odio
-                    </div>
-                    <span>
-                        <i class="fal fa-thumbtack mr-2"></i>
-                        <i class="far fa-trash-alt"></i>
-                    </span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-start">
-                    <div class="ms-2 me-auto">
-                        <div class="fw-bold">Subheading</div>
-                        Cras justo odio
-                    </div>
-                    <span>
-                        <i class="fal fa-thumbtack mr-2"></i>
-                        <i class="far fa-trash-alt"></i>
-                    </span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-start">
-                    <div class="ms-2 me-auto">
-                        <div class="fw-bold">Subheading</div>
-                        Cras justo odio
-                    </div>
-                    <span>
-                        <i class="fal fa-thumbtack mr-2"></i>
-                        <i class="far fa-trash-alt"></i>
-                    </span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-start">
-                    <div class="ms-2 me-auto">
-                        <div class="fw-bold">Subheading</div>
-                        Cras justo odio
-                    </div>
-                    <span>
-                        <i class="fal fa-thumbtack mr-2"></i>
-                        <i class="far fa-trash-alt"></i>
-                    </span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-start">
-                    <div class="ms-2 me-auto">
-                        <div class="fw-bold">Subheading</div>
-                        Cras justo odio
-                    </div>
-                    <span>
-                        <i class="fal fa-thumbtack mr-2"></i>
-                        <i class="far fa-trash-alt"></i>
-                    </span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-start">
-                    <div class="ms-2 me-auto">
-                        <div class="fw-bold">Subheading</div>
-                        Cras justo odio
-                    </div>
-                    <span>
-                        <i class="fal fa-thumbtack mr-2"></i>
-                        <i class="far fa-trash-alt"></i>
-                    </span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-start">
-                    <div class="ms-2 me-auto">
-                        <div class="fw-bold">Subheading</div>
-                        Cras justo odio
-                    </div>
-                    <span>
-                        <i class="fal fa-thumbtack mr-2"></i>
-                        <i class="far fa-trash-alt"></i>
-                    </span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-start">
-                    <div class="ms-2 me-auto">
-                        <div class="fw-bold">Subheading</div>
-                        Cras justo odio
-                    </div>
-                    <span>
-                        <i class="fal fa-thumbtack mr-2"></i>
-                        <i class="far fa-trash-alt"></i>
-                    </span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-start">
-                    <div class="ms-2 me-auto">
-                        <div class="fw-bold">Subheading</div>
-                        Cras justo odio
-                    </div>
-                    <span>
-                        <i class="fal fa-thumbtack mr-2"></i>
-                        <i class="far fa-trash-alt"></i>
-                    </span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-start">
-                    <div class="ms-2 me-auto">
-                        <div class="fw-bold">Subheading</div>
-                        Cras justo odio
-                    </div>
-                    <span>
-                        <i class="fal fa-thumbtack mr-2"></i>
-                        <i class="far fa-trash-alt"></i>
-                    </span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-start">
-                    <div class="ms-2 me-auto">
-                        <div class="fw-bold">Subheading</div>
-                        Cras justo odio
-                    </div>
-                    <span>
-                        <i class="fal fa-thumbtack mr-2"></i>
-                        <i class="far fa-trash-alt"></i>
-                    </span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-start">
-                    <div class="ms-2 me-auto">
-                        <div class="fw-bold">Subheading</div>
-                        Cras justo odio
-                    </div>
-                    <span>
-                        <i class="fal fa-thumbtack mr-2"></i>
-                        <i class="far fa-trash-alt"></i>
-                    </span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-start">
-                    <div class="ms-2 me-auto">
-                        <div class="fw-bold">Subheading</div>
-                        Cras justo odio
-                    </div>
-                    <span>
-                        <i class="fal fa-thumbtack mr-2"></i>
-                        <i class="far fa-trash-alt"></i>
-                    </span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-start">
-                    <div class="ms-2 me-auto">
-                        <div class="fw-bold">Subheading</div>
-                        Cras justo odio
-                    </div>
-                    <span>
-                        <i class="fal fa-thumbtack mr-2"></i>
-                        <i class="far fa-trash-alt"></i>
-                    </span>
-                </li>
+                @endforeach
             </ol>
         </div>
 
