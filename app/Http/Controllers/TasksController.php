@@ -28,7 +28,7 @@ class TasksController extends Controller
         ]);
 
         Task::create([
-            'account_id' => request(2),
+            'account_id' => $task->account_id = auth()->user()->id,
             'todo_title' => request('todo_title'),
             'todo_content' => request('todo_content'),
         ]);
