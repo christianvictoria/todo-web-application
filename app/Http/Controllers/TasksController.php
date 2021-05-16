@@ -12,8 +12,11 @@ class TasksController extends Controller
     public function index()
     {   
         $user = User::find(Auth::id());
-        $tasks = $user->tasks()->where('todo_title','!=','')->get();
+        // $tasks = $user->tasks()->where('todo_title','!=','', )->get();
+        $tasks = $user->tasks()->where('fld_isImportant','=','0' )->get();
+
         $pinnedTasks = $user->tasks()->where('fld_isImportant','=','1')->get();
+
 
         return view('tasks.index', compact('tasks', 'pinnedTasks'));
     }
@@ -49,14 +52,21 @@ class TasksController extends Controller
     public function update(Task $task, $pinned)
     {   
         
-        if ($pinned && $pinned == "important"){
-
-            $setAsPinned = 1;
+        if ($pinned && $pinned == "important")
+        {
             $task->update([
-                'fld_isImportant' => $setAsPinned,
+                'fld_isImportant' => 1,
             ]);
             return redirect('/tasks');
-        
+        }
+           
+        else if ($pinned && $pinned == "unpinned")
+        {
+            echo 'unpinned';
+            $task->update([
+                'fld_isImportant' => 0,
+            ]);
+            return redirect('/tasks');
         }
 
         request()->validate([
@@ -67,6 +77,7 @@ class TasksController extends Controller
         $task->update([
             'todo_title' => request('todo_title'),
             'todo_content' => request('todo_content'),
+      
         ]);
         return redirect('/tasks');
     }

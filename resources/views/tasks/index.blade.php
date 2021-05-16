@@ -115,9 +115,13 @@
                                     <div class="fw-bold">{{$pinnedtask->todo_title}}</div>
                                     {{$pinnedtask->todo_content}}
                                 </div>
-                                <span>
-                                    <i class="fas fa-thumbtack icons-setting"></i>
-                                </span>
+                                <form method="POST" action="/tasks/{{ $task->id }}/unpinned">
+                                    @method('PUT')
+                                        @csrf
+                                    <button type="submit">
+                                        <i class="fas fa-thumbtack icons-setting">{{ __('Submit') }}</i>
+                                    </button>
+                                </form>
                             </li>
                             @endforeach
                         </ol>
