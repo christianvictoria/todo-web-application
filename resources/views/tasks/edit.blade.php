@@ -22,11 +22,9 @@
 @section('content')
     <body>
         <div class="container">
-            <form method="POST" enctype="multipart/form-data" action="/tasks/{{ $task->id }}">
+            <form method="POST" enctype="multipart/form-data" action="/tasks/{{ $task->id }}/!important">
             @method('PUT')
                 @csrf
-
-
                 <div>
                     <div class="input-group">
                         <input type="text" class="form-control mb-2" id="todo_title" name="todo_title" value="{{ $task->todo_title }}" placeholder="Type Title here..">

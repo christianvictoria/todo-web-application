@@ -43,15 +43,30 @@
                     </div>
                     <ol class="list-group list-group-numbered">
                         @foreach($tasks as $task)
-                        <li class="list-group-item d-flex justify-content-between align-items-start">
-                            <div class="ms-2 me-auto">
-                                <div class="fw-bold">{{ $task->todo_title }}</div>
-                                {{ $task->todo_content }}
-                            </div>
-                            <span>
-                                <a href="/tasks/{{$task->id}}/edit"><i class="fal fa-thumbtack mr-2 icons-setting"></i></a>
-                                <a href="/pin/{{$task->id}}"><i class="fal fa-thumbtack mr-2 icons-setting"></i></a>
-                                <i class="far fa-trash-alt icons-setting"></i>
+                        <li class="list-group-item d-flex justify-content-between align-items-right">
+                 
+                                <div class="ms-2 me-auto">
+                                        <div class="fw-bold">{{ $task->todo_title }}</div>
+                                        {{ $task->todo_content }}
+                                </div>
+                         
+                            <span class ="task-icons">
+                                <a href="tasks/{{$task->id}}/edit">  
+                                    <i class="fal fa-pencil mr-2 icons-setting"></i> 
+                                </a>
+                                
+                                <form method="POST" action="/tasks/{{ $task->id }}/important">
+                                    @method('PUT')
+                                        @csrf
+                                    <button type="submit">
+                                        <i class="fal fa-thumbtack mr-2 icons-setting">{{ __('Submit') }}</i>
+                                    </button>
+                                </form>
+                                <form action="{{ route('tasks.destroy', $task->id) }}" method="POST">
+                                            @method('DELETE')
+                                            @csrf
+                                     <button type="submit"> <i class="far fa-trash-alt icons-setting"></i> </button>
+                                </form>
                             </span>
                         </li>
                         @endforeach
@@ -61,7 +76,7 @@
                 </div>
                 <div class="col">
                     <form method="POST" action="/tasks">
-        
+
                         @csrf
 
                         <div>

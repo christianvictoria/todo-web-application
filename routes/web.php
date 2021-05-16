@@ -26,7 +26,12 @@ Route::get('/home', [TasksController::class, 'index']);
 // End points 
 Route::get('/tasks', [TasksController::class, 'index']); // This is home 
 Route::get('/tasks/create', [TasksController::class, 'create']); // This is home 
-Route::get('/tasks/{task}/edit', [TasksController::class, 'edit']); // This is edit page 
-Route::put('/tasks/{task}', [TasksController::class, 'update']); // This is route for editing specific task
-Route::put('/pin/{task}', [TasksController::class, 'pin']);
 Route::post('/tasks', [TasksController::class, 'store']); // This is route for creating
+Route::put('/tasks/{task}/{important}', [TasksController::class, 'update']); // This is route for editing specific task
+Route::get('/tasks/{task}/edit', [TasksController::class, 'edit']); // This is edit page 
+
+// Route::put('/tasks/{task}/important', [TasksController::class, 'update']); // This is route for editing specific task
+
+
+Route::delete('/tasks/{task}', [TasksController::class, 'destroy'])->name('tasks.destroy');
+
