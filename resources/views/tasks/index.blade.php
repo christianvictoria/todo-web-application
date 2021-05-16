@@ -46,7 +46,7 @@
                         <li class="list-group-item d-flex justify-content-between align-items-right">
                  
                                 <div class="ms-2 me-auto">
-                                        <div class="fw-bold">{{ $task->todo_title }}</div>
+                                        <div class="fw-bold"> <strong>{{ $task->todo_title }}</strong></div>
                                         {{ $task->todo_content }}
                                 </div>
                          
