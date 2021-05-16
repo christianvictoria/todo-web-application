@@ -13,15 +13,13 @@ class TasksController extends Controller
     {   
         $user = User::find(Auth::id());
         $tasks = Task::all();
-        // print_r($tasks);
 
-        // $tasks = $user->tasks()->where('title','!=','')->get();
         return view('tasks.index', ['tasks' => $tasks]);
     }
 
     public function create()
     {
-        return view('tasks.create');
+        return view('tasks.index', ['tasks' => $tasks]);
     }
 
     public function store(Request $request)

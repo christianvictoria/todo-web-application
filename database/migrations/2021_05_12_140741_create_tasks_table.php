@@ -18,9 +18,9 @@ class CreateTasksTable extends Migration
             $table->integer('account_id')->unsigned();
             $table->string('todo_title');
             $table->text('todo_content');
-            $table->text('todo_attachment');
-            $table->integer('fld_isImportant');
-            $table->integer('fld_isDeleted');
+            $table->text('todo_attachment')->nullable();
+            $table->integer('fld_isImportant')->default(0);
+            $table->integer('fld_isDeleted')->default(0);
             $table->timestamps();
         });
     }

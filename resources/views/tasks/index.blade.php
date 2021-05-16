@@ -14,8 +14,9 @@
         <!-- Styles -->
         <link type="text/css" rel="stylesheet" href="{{ mix('css/app.css') }}">  
         <link type="text/css" rel="stylesheet" href="{{ asset('css/home.css') }}">
-        
+
     </head>
+
     <body>
         <nav class="navbar sticky-top navbar-light p-3 mb-3 set-bg-white" style="box-shadow: 0px 1px 10px #999;">
             <div class="container-fluid">
