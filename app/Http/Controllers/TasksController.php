@@ -79,6 +79,7 @@ class TasksController extends Controller
 
         return redirect('/tasks');
     }
+    
     public function deleteBlank()
     {
         $task = Task::where('title','=','')->delete();
