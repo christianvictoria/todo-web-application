@@ -30,10 +30,6 @@
                         <input type="text" class="form-control mb-2" id="todo_title" name="todo_title" value="{{ $task->todo_title }}" placeholder="Type Title here..">
                     </div>
                         <textarea class="form-control" id="todo_content" name="todo_content" placeholder="Type content here.." style="height: 440px">{{ $task->todo_content }}</textarea>
-                        <select class="form-select" id="fld_isImportant" name="fld_isImportant" aria-label="Set as Pinned">
-                            <option value="1">Yes</option>
-                            <option value="0" selected>No</option>
-                          </select>
                 </div>
                 <div class="shadow-sm p-3">
                     <div class="row">
@@ -48,7 +44,7 @@
                         <div class="col d-flex justify-content-end">
                             <button type="submit" class="btn btn-primary"><strong>{{ __('Submit') }}</strong></button>
                         </div>
-                      </div>
+                    </div>
                 </div>
             </form>
         </div>

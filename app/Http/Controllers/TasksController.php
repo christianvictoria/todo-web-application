@@ -57,20 +57,18 @@ class TasksController extends Controller
             ]);
             return redirect('/tasks');
         
-        }else {
+        }
 
-            request()->validate([
-                'todo_title' => 'required',
-                'todo_content' => 'required',
-            ]);
+        request()->validate([
+            'todo_title' => 'required',
+            'todo_content' => 'required',
+        ]);
     
-            $task->update([
-                'todo_title' => request('todo_title'),
-                'todo_content' => request('todo_content'),
-            ]);
-            return redirect('/tasks');
-            }
-
+        $task->update([
+            'todo_title' => request('todo_title'),
+            'todo_content' => request('todo_content'),
+        ]);
+        return redirect('/tasks');
     }
 
     public function destroy($id)
