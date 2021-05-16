@@ -13,13 +13,15 @@ class TasksController extends Controller
     {   
         $user = User::find(Auth::id());
         $tasks = Task::all();
+        // print_r($tasks);
+
 
         return view('tasks.index', ['tasks' => $tasks]);
     }
 
     public function create()
     {
-        return view('tasks.index', ['tasks' => $tasks]);
+        return view('tasks.create');
     }
 
     public function store(Request $request)
@@ -34,32 +36,38 @@ class TasksController extends Controller
         $task->fill($request->all());
         $task->account_id = auth()->user()->id;
 
+        // print_r($task);
+
         // Task::create([
         //     'todo_title' => request('todo_title'),
         //     'todo_content' => request('todo_content'),
         // ]);
+
+        $task->save();
 
         return redirect('/tasks');
     }
 
     public function edit(Task $task)
     {
-        return view('tasks.edit', ['task' => $task]);
+        // return view('tasks.edit', ['task' => $task]);
+        return view('tasks.edit', compact('task'));
+ 
     }
 
-    public function update(Task $task)
+    public function update(Request $request, Task $task)
     {
-        request()->validate([
-            'todo_title' => 'required',
+        $request->validate([
+            'todo_title' => 'required|unique:tasks',
             'todo_content' => 'required',
         ]);
 
-        $task->update([
-            'todo_title' => request('todo_title'),
-            'todo_content' => request('todo_content'),
-        ]);
+        $task = Task::find($task->id);
+        $task->fill($request->all());
+        $task->save();
 
-        return redirect('/tasks');
+
+        return redirect('/posts');
     }
 
 }

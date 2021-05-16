@@ -16,6 +16,10 @@
         <link type="text/css" rel="stylesheet" href="{{ asset('css/home.css') }}">
         
     </head>
+@extends('layouts.app')
+
+
+@section('content')
     <body>
     
         <nav class="navbar sticky-top navbar-light p-3 mb-3 set-bg-white" style="box-shadow: 0px 1px 10px #999;">
@@ -28,10 +32,9 @@
         </nav>
 
         <div class="container">
-            <form method="POST" action="/tasks/{{ $task->id }}">
-                @method('PUT')
-
+            <form method="POST"  enctype="multipart/form-data" action="{{route('tasks.update', $task->id)}}">
                 @csrf
+                @method('PATCH')
 
                 <div>
                     <div class="input-group">
@@ -51,11 +54,12 @@
                             
                         </div>
                         <div class="col d-flex justify-content-end">
-                            <button type="submit" class="btn btn-primary"><strong>Update</strong></button>
+                            <button type="submit" class="btn btn-primary"><strong>{{ __('Submit') }}</strong></button>
                         </div>
                       </div>
                 </div>
             </form>
         </div>
     </body>
+    @endsection
 </html>

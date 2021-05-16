@@ -23,6 +23,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // End points 
 Route::get('/tasks', [TasksController::class, 'index']); // This is home 
+Route::get('/tasks/create', [TasksController::class, 'create']); // This is home 
 Route::get('/tasks/{task}/edit', [TasksController::class, 'edit']); // This is edit page 
-Route::put('/tasks/{task}', [TasksController::class, 'update']); // This is route for editing specific task
+Route::patch('/tasks/{task}', [TasksController::class, 'update'])->name('task.update'); // This is route for editing specific task
 Route::post('/tasks', [TasksController::class, 'store']); // This is route for creating
