@@ -30,14 +30,13 @@ class TasksController extends Controller
             'todo_content' => 'required',
         ]);
 
-        $task = new Task();
-        $task->fill($request->all());
-        $task->account_id = auth()->user()->id;
+        // $task = new Task();
+        // $task->fill($request->all());
 
-        // Task::create([
-        //     'todo_title' => request('todo_title'),
-        //     'todo_content' => request('todo_content'),
-        // ]);
+        Task::create([
+            'todo_title' => request('todo_title'),
+            'todo_content' => request('todo_content'),
+        ]);
 
         return redirect('/tasks');
     }
