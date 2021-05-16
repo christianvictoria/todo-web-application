@@ -21,22 +21,10 @@
 
 @section('content')
     <body>
-    
-        <nav class="navbar sticky-top navbar-light p-3 mb-3 set-bg-white" style="box-shadow: 0px 1px 10px #999;">
-            <div class="container-fluid">
-                <a class="navbar-brand"><strong>ToDo - WEB APPLICATION</strong></a>
-                <div class="d-flex">
-                    <a class="nav-link black" href="">Logout</a>
-                </div>
-            </div>
-        </nav>
-
         <div class="container">
-            <form method="POST" enctype="multipart/form-data" action="/tasks/{{ $task->id }}">
+            <form method="POST" enctype="multipart/form-data" action="/tasks/{{ $task->id }}/!important">
             @method('PUT')
                 @csrf
-
-
                 <div>
                     <div class="input-group">
                         <input type="text" class="form-control mb-2" id="todo_title" name="todo_title" value="{{ $task->todo_title }}" placeholder="Type Title here..">

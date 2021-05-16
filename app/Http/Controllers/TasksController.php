@@ -36,13 +36,6 @@ class TasksController extends Controller
         $task->fill($request->all());
         $task->account_id = auth()->user()->id;
 
-        // print_r($task);
-
-        // Task::create([
-        //     'todo_title' => request('todo_title'),
-        //     'todo_content' => request('todo_content'),
-        // ]);
-
         $task->save();
 
         return redirect('/tasks');
@@ -51,21 +44,47 @@ class TasksController extends Controller
     public function edit(Task $task)
     {
         return view('tasks.edit', ['task' => $task]);
-        // return view('tasks.edit', compact('task'));
  
     }
 
-    public function update(Task $task)
-    {
-        request()->validate([
-            'todo_title' => 'required',
-            'todo_content' => 'required',
-        ]);
+    public function update(Task $task, $pinned)
+    {   
+        
+        if ($pinned && $pinned == "important"){
 
-        $task->update([
-            'todo_title' => request('todo_title'),
-            'todo_content' => request('todo_content'),
-        ]);
+            $setAsPinned = 1;
+            $task->update([
+                'fld_isImportant' => $setAsPinned,
+            ]);
+            return redirect('/tasks');
+        
+        }else {
+
+            request()->validate([
+                'todo_title' => 'required',
+                'todo_content' => 'required',
+            ]);
+    
+            $task->update([
+                'todo_title' => request('todo_title'),
+                'todo_content' => request('todo_content'),
+            ]);
+            return redirect('/tasks');
+            }
+
+    }
+
+    public function destroy($id)
+    {
+
+        $task = Task::find($id);
+        $task->delete();
+
+        return redirect('/tasks');
+    }
+    public function deleteBlank()
+    {
+        $task = Task::where('title','=','')->delete();
 
         return redirect('/tasks');
     }
