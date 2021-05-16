@@ -32,9 +32,10 @@
         </nav>
 
         <div class="container">
-            <form method="POST"  enctype="multipart/form-data" action="{{route('tasks.update', $task->id)}}">
+            <form method="POST" enctype="multipart/form-data" action="/tasks/{{ $task->id }}">
+            @method('PUT')
                 @csrf
-                @method('PATCH')
+
 
                 <div>
                     <div class="input-group">

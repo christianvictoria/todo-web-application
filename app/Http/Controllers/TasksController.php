@@ -15,7 +15,7 @@ class TasksController extends Controller
         $tasks = Task::all();
         // print_r($tasks);
 
-
+        // $tasks = $user->tasks()->where('title','!=','')->get();
         return view('tasks.index', ['tasks' => $tasks]);
     }
 
@@ -50,24 +50,24 @@ class TasksController extends Controller
 
     public function edit(Task $task)
     {
-        // return view('tasks.edit', ['task' => $task]);
-        return view('tasks.edit', compact('task'));
+        return view('tasks.edit', ['task' => $task]);
+        // return view('tasks.edit', compact('task'));
  
     }
 
-    public function update(Request $request, Task $task)
+    public function update(Task $task)
     {
-        $request->validate([
-            'todo_title' => 'required|unique:tasks',
+        request()->validate([
+            'todo_title' => 'required',
             'todo_content' => 'required',
         ]);
 
-        $task = Task::find($task->id);
-        $task->fill($request->all());
-        $task->save();
+        $task->update([
+            'todo_title' => request('todo_title'),
+            'todo_content' => request('todo_content'),
+        ]);
 
-
-        return redirect('/posts');
+        return redirect('/tasks');
     }
 
 }
