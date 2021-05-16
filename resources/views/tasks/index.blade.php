@@ -109,42 +109,17 @@
                             <h3 class="text-center header-size"><strong>Pinned Tasks</strong></h3>
                         </div>
                         <ol class="list-group list-group-numbered">
+                            @foreach ($pinnedTasks as $pinnedtask)
                             <li class="list-group-item d-flex justify-content-between align-items-start">
                                 <div class="ms-2 me-auto">
-                                    <div class="fw-bold">Subheading</div>
-                                    Cras justo odio
+                                    <div class="fw-bold">{{$pinnedtask->todo_title}}</div>
+                                    {{$pinnedtask->todo_content}}
                                 </div>
                                 <span>
                                     <i class="fas fa-thumbtack icons-setting"></i>
                                 </span>
                             </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-start">
-                                <div class="ms-2 me-auto">
-                                    <div class="fw-bold">Subheading</div>
-                                    Cras justo odio
-                                </div>
-                                <span>
-                                    <i class="fas fa-thumbtack"></i>
-                                </span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-start">
-                                <div class="ms-2 me-auto">
-                                    <div class="fw-bold">Subheading</div>
-                                    Cras justo odio
-                                </div>
-                                <span>
-                                    <i class="fas fa-thumbtack"></i>
-                                </span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-start">
-                                <div class="ms-2 me-auto">
-                                    <div class="fw-bold">Subheading</div>
-                                    Cras justo odio
-                                </div>
-                                <span>
-                                    <i class="fas fa-thumbtack"></i>
-                                </span>
-                            </li>
+                            @endforeach
                         </ol>
                     </div>
         

@@ -12,9 +12,10 @@ class TasksController extends Controller
     public function index()
     {   
         $user = User::find(Auth::id());
-        $tasks = Task::all();
+        $tasks = $user->tasks()->where('todo_title','!=','')->get();
+        $pinnedTasks = $user->tasks()->where('fld_isImportant','=','1')->get();
 
-        return view('tasks.index', ['tasks' => $tasks]);
+        return view('tasks.index', compact('tasks', 'pinnedTasks'));
     }
 
     public function create()
@@ -32,7 +33,7 @@ class TasksController extends Controller
 
         $task = new Task();
         $task->fill($request->all());
-        $task->account_id = auth()->user()->id;
+        $task->user_id = auth()->user()->id;
 
         $task->save();
 
