@@ -9,6 +9,8 @@
     display: none;
 }
 
+.pointer { cursor: pointer; }
+
 .header-size {
     font-size: larger;
 }

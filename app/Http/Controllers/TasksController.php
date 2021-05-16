@@ -13,13 +13,15 @@ class TasksController extends Controller
     {   
         $user = User::find(Auth::id());
         $tasks = Task::all();
+        // print_r($tasks);
 
+        // $tasks = $user->tasks()->where('title','!=','')->get();
         return view('tasks.index', ['tasks' => $tasks]);
     }
 
     public function create()
     {
-        return view('tasks.index', ['tasks' => $tasks]);
+        return view('tasks.create');
     }
 
     public function store(Request $request)
@@ -30,13 +32,18 @@ class TasksController extends Controller
             'todo_content' => 'required',
         ]);
 
-        // $task = new Task();
-        // $task->fill($request->all());
+        $task = new Task();
+        $task->fill($request->all());
+        $task->account_id = auth()->user()->id;
 
-        Task::create([
-            'todo_title' => request('todo_title'),
-            'todo_content' => request('todo_content'),
-        ]);
+        // print_r($task);
+
+        // Task::create([
+        //     'todo_title' => request('todo_title'),
+        //     'todo_content' => request('todo_content'),
+        // ]);
+
+        $task->save();
 
         return redirect('/tasks');
     }
@@ -44,6 +51,8 @@ class TasksController extends Controller
     public function edit(Task $task)
     {
         return view('tasks.edit', ['task' => $task]);
+        // return view('tasks.edit', compact('task'));
+ 
     }
 
     public function update(Task $task)

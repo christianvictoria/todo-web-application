@@ -31,8 +31,8 @@
                 <div class="col">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search task here..">
-                        <span class="input-group-text">
-                            <i class="fas fa-search"></i>
+                        <span type ="submit" class="input-group-text">
+                            <i class="fas fa-search icons-setting"></i>
                         </span>
                     </div>
                 
