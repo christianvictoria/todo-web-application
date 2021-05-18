@@ -12,9 +12,13 @@ class TasksController extends Controller
     public function index()
     {   
         $user = User::find(Auth::id());
-        $tasks = Task::all();
+        // $tasks = $user->tasks()->where('todo_title','!=','', )->get();
+        $tasks = $user->tasks()->where('fld_isImportant','=','0' )->get();
 
-        return view('tasks.index', ['tasks' => $tasks]);
+        $pinnedTasks = $user->tasks()->where('fld_isImportant','=','1')->get();
+
+
+        return view('tasks.index', compact('tasks', 'pinnedTasks'));
     }
 
     public function create()
@@ -32,12 +36,9 @@ class TasksController extends Controller
 
         $task = new Task();
         $task->fill($request->all());
-        $task->account_id = auth()->user()->id;
+        $task->user_id = auth()->user()->id;
 
-        // Task::create([
-        //     'todo_title' => request('todo_title'),
-        //     'todo_content' => request('todo_content'),
-        // ]);
+        $task->save();
 
         return redirect('/tasks');
     }
@@ -45,19 +46,54 @@ class TasksController extends Controller
     public function edit(Task $task)
     {
         return view('tasks.edit', ['task' => $task]);
+ 
     }
 
-    public function update(Task $task)
-    {
+    public function update(Task $task, $pinned)
+    {   
+        
+        if ($pinned && $pinned == "important")
+        {
+            $task->update([
+                'fld_isImportant' => 1,
+            ]);
+            return redirect('/tasks');
+        }
+           
+        else if ($pinned && $pinned == "unpinned")
+        {
+            echo 'unpinned';
+            $task->update([
+                'fld_isImportant' => 0,
+            ]);
+            return redirect('/tasks');
+        }
+
         request()->validate([
             'todo_title' => 'required',
             'todo_content' => 'required',
         ]);
-
+    
         $task->update([
             'todo_title' => request('todo_title'),
             'todo_content' => request('todo_content'),
+      
         ]);
+        return redirect('/tasks');
+    }
+
+    public function destroy($id)
+    {
+
+        $task = Task::find($id);
+        $task->delete();
+
+        return redirect('/tasks');
+    }
+    
+    public function deleteBlank()
+    {
+        $task = Task::where('title','=','')->delete();
 
         return redirect('/tasks');
     }

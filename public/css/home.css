@@ -9,6 +9,8 @@
     display: none;
 }
 
+.pointer { cursor: pointer; }
+
 .header-size {
     font-size: larger;
 }
@@ -30,6 +32,7 @@
 
 .icons-setting {
     cursor: pointer;
+    color: black;
 }
 
 .icon-task-setting {

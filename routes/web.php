@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TasksController;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,13 +20,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [TasksController::class, 'index']);
 
 // End points 
 Route::get('/tasks', [TasksController::class, 'index']); // This is home 
-Route::get('/tasks/{task}/edit', [TasksController::class, 'edit']); // This is edit page 
-Route::put('/tasks/{task}', [TasksController::class, 'update']); // This is route for editing specific task
+Route::get('/tasks/create', [TasksController::class, 'create']); // This is home 
 Route::post('/tasks', [TasksController::class, 'store']); // This is route for creating
-Auth::routes();
+Route::get('/tasks/{task}/edit', [TasksController::class, 'edit']); // This is edit page 
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::delete('/tasks/{task}', [TasksController::class, 'destroy'])->name('tasks.destroy');
+Route::put('/tasks/{task}/{important}', [TasksController::class, 'update']); // This is route for editing specific task
+
