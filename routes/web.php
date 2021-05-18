@@ -26,3 +26,6 @@ Route::get('/tasks', [TasksController::class, 'index']); // This is home
 Route::get('/tasks/{task}/edit', [TasksController::class, 'edit']); // This is edit page 
 Route::put('/tasks/{task}', [TasksController::class, 'update']); // This is route for editing specific task
 Route::post('/tasks', [TasksController::class, 'store']); // This is route for creating
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
