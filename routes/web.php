@@ -31,5 +31,7 @@ Route::get('/tasks/{task}/edit', [TasksController::class, 'edit']); // This is e
 
 Route::delete('/tasks/{task}', [TasksController::class, 'destroy'])->name('tasks.destroy');
 Route::put('/tasks/{task}/{important}', [TasksController::class, 'update']); // This is route for editing specific task
+Route::put('/tasks/{task}/{unpinned}', [TasksController::class, 'update']); // This is route for editing specific task
+
 
 

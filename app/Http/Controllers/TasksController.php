@@ -23,7 +23,7 @@ class TasksController extends Controller
 
     public function create()
     {
-        return view('tasks.index', ['tasks' => $tasks]);
+        return view('tasks.index', compact('tasks'));
     }
 
     public function store(Request $request)
@@ -60,13 +60,14 @@ class TasksController extends Controller
             return redirect('/tasks');
         }
            
-        else if ($pinned && $pinned == "unpinned")
+        if ($pinned && $pinned == "unpinned")
         {
-            echo 'unpinned';
+ 
             $task->update([
                 'fld_isImportant' => 0,
             ]);
             return redirect('/tasks');
+
         }
 
         request()->validate([
