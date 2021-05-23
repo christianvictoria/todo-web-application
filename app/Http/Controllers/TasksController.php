@@ -26,7 +26,7 @@ class TasksController extends Controller
     {
         // For Now not Working needed to have the ID of the current Logged In user
         $request->validate([
-            'todo_title' => 'required|max:255',
+            'todo_title' => 'required',
             'todo_content' => 'required',
         ]);
         
@@ -70,7 +70,7 @@ class TasksController extends Controller
         $task->update([
             'todo_title' => request('todo_title'),
             'todo_content' => request('todo_content'),
-        
+            'todo_deadline' => request('todo_deadline'),
         ]);
         return redirect('/tasks');
     }
