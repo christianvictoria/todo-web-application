@@ -23,13 +23,23 @@
     <body>
         <div class="container">
             <form method="POST" enctype="multipart/form-data" action="/tasks/{{ $task->id }}/!important">
-            @method('PUT')
+                @method('PUT')
                 @csrf
                 <div>
                     <div class="input-group">
                         <input type="text" class="form-control mb-2" id="todo_title" name="todo_title" value="{{ $task->todo_title }}" placeholder="Type Title here..">
                     </div>
-                        <textarea class="form-control" id="todo_content" name="todo_content" placeholder="Type content here.." style="height: 440px">{{ $task->todo_content }}</textarea>
+                    <div>
+                        <textarea class="form-control" id="todo_content" name="todo_content" placeholder="Type content here.." style="height: 240px">{{ $task->todo_content }}</textarea>
+                    </div>
+                    <div>
+                        Attachments:<br>
+                        @if ($task->todo_attachment)
+                            <img style="max-width: 300px;" src="{{ asset('/storage/img/'.$task->todo_attachment) }}" alt="{{ $task->todo_attachment }}"/>
+                        @else
+                            No attachments available
+                        @endif
+                    </div> 
                 </div>
                 <div class="shadow-sm p-3">
                     <div class="row">

@@ -9,21 +9,17 @@ use Illuminate\Support\Facades\Auth;
 
 class TasksController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {   
         $user = User::find(Auth::id());
-        // $tasks = $user->tasks()->where('todo_title','!=','', )->get();
         $tasks = $user->tasks()->where('fld_isImportant','=','0' )->get();
-
         $pinnedTasks = $user->tasks()->where('fld_isImportant','=','1')->get();
-
-
         return view('tasks.index', compact('tasks', 'pinnedTasks'));
     }
 
     public function create()
     {
-        return view('tasks.index', compact('tasks'));
+        return view('tasks.index', ['tasks' => $tasks]);
     }
 
     public function store(Request $request)
@@ -33,13 +29,22 @@ class TasksController extends Controller
             'todo_title' => 'required|max:255',
             'todo_content' => 'required',
         ]);
-
+        
+        if($request->hasFile('img')){
+            $file = $request->file('img')->getClientOriginalName();
+            $filename = pathinfo($file, PATHINFO_FILENAME);
+            $extension = $request->file('img')->getClientOriginalExtension();
+            $file_to_store = $filename.'_'.time().'.'.$extension;
+            $request->file('img')->storeAs('public/img', $file_to_store);
+        } else{
+            $file_to_store = 'no img';
+        }
         $task = new Task();
-        $task->fill($request->all());
         $task->user_id = auth()->user()->id;
-
+        $task->todo_title = $request->todo_title;
+        $task->todo_content = $request->todo_content;
+        $task->todo_attachment = $file_to_store;
         $task->save();
-
         return redirect('/tasks');
     }
 
@@ -51,34 +56,20 @@ class TasksController extends Controller
 
     public function update(Task $task, $pinned)
     {   
-        
-        if ($pinned && $pinned == "important")
-        {
-            $task->update([
-                'fld_isImportant' => 1,
-            ]);
+        $arr = array("important", "notimportant");
+        if (in_array($pinned, $arr)) {
+            if($pinned == $arr[0]) $task->update(['fld_isImportant' => 1]);
+            if($pinned == $arr[1]) $task->update(['fld_isImportant' => 0]);
             return redirect('/tasks');
         }
-           
-        if ($pinned && $pinned == "unpinned")
-        {
- 
-            $task->update([
-                'fld_isImportant' => 0,
-            ]);
-            return redirect('/tasks');
-
-        }
-
         request()->validate([
             'todo_title' => 'required',
             'todo_content' => 'required',
         ]);
-    
         $task->update([
             'todo_title' => request('todo_title'),
             'todo_content' => request('todo_content'),
-      
+        
         ]);
         return redirect('/tasks');
     }
