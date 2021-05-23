@@ -44,6 +44,7 @@ class TasksController extends Controller
         $task->todo_title = $request->todo_title;
         $task->todo_content = $request->todo_content;
         $task->todo_attachment = $file_to_store;
+        $task->todo_deadline = $request->todo_deadline;
         $task->save();
         return redirect('/tasks');
     }

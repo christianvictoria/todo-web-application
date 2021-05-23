@@ -47,9 +47,8 @@
                             <input class="hidden" id="upload" type="file"/>
                             <a href="" class="text-decor-null" id="upload_link"><i class="far fa-images fa-2x icon-task-setting text-decor-null"></i></a>
                         </div>
-                        <div class="col-sm-1">
-                        <input class="hidden" id="date" type="date"/>
-                           <a href="" id = "date_link"> <i class="far fa-calendar-alt mt-2 fa-2x icon-task-setting"></i> </a>
+                        <div class="col-sm-5">
+                            <input class="date form-control" name="todo_deadline" type="text" placeholder="Select Date" value="{{ $task->todo_deadline }}">
                         </div>
                         <div class="col d-flex justify-content-end">
                             <button type="submit" class="btn btn-primary"><strong>{{ __('Submit') }}</strong></button>

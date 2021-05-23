@@ -10,6 +10,9 @@
         <script src="{{ asset('js/onclickUpload.js') }}" defer></script>
         <script src="{{ asset('js/datetime.js') }}" defer></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
 
         <!-- Styles -->
         <link type="text/css" rel="stylesheet" href="{{ mix('css/app.css') }}">  
@@ -42,7 +45,7 @@
                 
                 <div class="set-height-tasks border" >
                     <div class="p-3 sticky-top border set-bg-white">
-                        <h3 class="text-center header-size"><strong>My Tasks</strong></h3>
+                        <h3 class="text-center header-size"><strong>Tasks</strong></h3>
                     </div>
                     <ol class="list-group list-group-numbered">
                         @foreach($tasks as $task)
@@ -93,9 +96,8 @@
                                     <input class="hidden" name="img" id="upload" type="file"/>
                                     <a href="" class="text-decor-null" id="upload_link"><i class="far fa-images fa-2x icon-task-setting text-decor-null"></i></a>
                                 </div>
-                                <div class="col-sm-1">
-                                    <input class="hidden" id="date" type="date"/>
-                                    <a href="" id = "date_link"> <i class="far fa-calendar-alt mt-2 fa-2x icon-task-setting"></i> </a>       
+                                <div class="col-sm-5">
+                                    <input class="date form-control" name="todo_deadline" type="text" placeholder="Select Date">
                                 </div>
                                 <div class="col d-flex justify-content-end">
                                     <button type="submit" class="btn btn-primary"><strong>Save</strong></button>
@@ -144,7 +146,7 @@
                     <!-- Missed Tasks -->
                     <div class="set-height-pinned-task border">
                         <div class="p-3 sticky-top border set-bg-white">
-                            <h3 class="text-center header-size"><strong>Missed Tasks</strong></h3>
+                            <h3 class="text-center header-size"><strong>Notification</strong></h3>
                         </div>
                         <ol class="list-group list-group-numbered">
                             <li class="list-group-item d-flex justify-content-between align-items-start">
@@ -196,5 +198,8 @@
         </div>
 
 
+        <script type="text/javascript">
+            $('.date').datepicker({format: 'yyyy-mm-dd'});  
+        </script> 
     </body>
 </html>
