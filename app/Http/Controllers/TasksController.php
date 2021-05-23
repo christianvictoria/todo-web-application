@@ -30,21 +30,19 @@ class TasksController extends Controller
             'todo_content' => 'required',
         ]);
         
+        $task = new Task();
+        $task->user_id = auth()->user()->id;
+        $task->todo_title = $request->todo_title;
+        $task->todo_content = $request->todo_content;
+        $task->todo_deadline = $request->todo_deadline;
         if($request->hasFile('img')){
             $file = $request->file('img')->getClientOriginalName();
             $filename = pathinfo($file, PATHINFO_FILENAME);
             $extension = $request->file('img')->getClientOriginalExtension();
             $file_to_store = $filename.'_'.time().'.'.$extension;
             $request->file('img')->storeAs('public/img', $file_to_store);
-        } else{
-            $file_to_store = 'no img';
+            $task->todo_attachment = $file_to_store;
         }
-        $task = new Task();
-        $task->user_id = auth()->user()->id;
-        $task->todo_title = $request->todo_title;
-        $task->todo_content = $request->todo_content;
-        $task->todo_attachment = $file_to_store;
-        $task->todo_deadline = $request->todo_deadline;
         $task->save();
         return redirect('/tasks');
     }
@@ -55,7 +53,7 @@ class TasksController extends Controller
  
     }
 
-    public function update(Task $task, $pinned)
+    public function update(Task $task, $pinned, Request $request)
     {   
         $arr = array("important", "notimportant");
         if (in_array($pinned, $arr)) {
@@ -67,11 +65,25 @@ class TasksController extends Controller
             'todo_title' => 'required',
             'todo_content' => 'required',
         ]);
-        $task->update([
-            'todo_title' => request('todo_title'),
-            'todo_content' => request('todo_content'),
-            'todo_deadline' => request('todo_deadline'),
-        ]);
+        if($request->hasFile('img')){
+            $file = $request->file('img')->getClientOriginalName();
+            $filename = pathinfo($file, PATHINFO_FILENAME);
+            $extension = $request->file('img')->getClientOriginalExtension();
+            $file_to_store = $filename.'_'.time().'.'.$extension;
+            $request->file('img')->storeAs('public/img', $file_to_store);
+            $task->update([
+                'todo_title' => $request->todo_title,
+                'todo_content' => $request->todo_content,
+                'todo_deadline' => $request->todo_deadline,
+                'todo_attachment' => $file_to_store
+            ]);
+        } else {
+            $task->update([
+                'todo_title' => $request->todo_title,
+                'todo_content' => $request->todo_content,
+                'todo_deadline' => $request->todo_deadline
+            ]);
+        }
         return redirect('/tasks');
     }
 
