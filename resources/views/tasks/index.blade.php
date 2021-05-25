@@ -72,13 +72,19 @@
                                                 <button class="btn btn-light transparent btn-block" type="submit">Pin</button>
                                             </form>
                                         </div>
-                                            <div class="dropdown-item no-padding">
-                                                <form action="{{ route('tasks.destroy', $task->id) }}" method="POST">
-                                                    @method('DELETE')
-                                                    @csrf
-                                                    <button class="btn btn-light btn-block" type="submit">Delete</button>
-                                                </form>
-                                            </div>
+                                        <div class="dropdown-item no-padding">            
+                                            <form method="POST">
+                                                <!-- @method('PUT') -->
+                                                @csrf
+                                                <button class="btn btn-light transparent btn-block" type="submit"> Share </button>
+                                            </form>
+                                        </div>
+                                        <div class="dropdown-item no-padding">
+                                            <form action="{{ route('tasks.destroy', $task->id) }}" method="POST">
+                                                @method('DELETE')
+                                                @csrf
+                                                <button class="btn btn-light btn-block danger" type="submit"> Delete </button>
+                                            </form>
                                         </div>
                                     </div>
                                 </span>
@@ -140,16 +146,27 @@
                                             <i class="fas fa-ellipsis-v"></i>
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                          <a class="dropdown-item no-padding" href="tasks/{{$pinnedtask->id}}/edit">
-                                            <button class="btn btn-light transparent btn-block" type="submit">View / Edit</button>
-                                        </a>
-                                          <div class="dropdown-item no-padding">            
-                                            <form method="POST" action="/tasks/{{ $pinnedtask->id }}/notimportant">
-                                                @method('PUT')
+                                            <a class="dropdown-item no-padding" href="tasks/{{$pinnedtask->id}}/edit">
+                                                <button class="btn btn-light transparent btn-block" type="submit">
+                                                    View / Edit
+                                                </button>
+                                            </a>
+                                            <div class="dropdown-item no-padding">            
+                                                <form method="POST" action="/tasks/{{ $pinnedtask->id }}/notimportant">
+                                                    @method('PUT')
+                                                    @csrf
+                                                    <button class="btn btn-light transparent btn-block" type="submit">
+                                                        Unpin
+                                                    </button>
+                                                </form>
+                                            </div>
+                                            <div class="dropdown-item no-padding">            
+                                            <form method="POST">
+                                                <!-- @method('PUT') -->
                                                 @csrf
-                                                <button class="btn btn-light transparent btn-block" type="submit">Unpin</button>
+                                                <button class="btn btn-light transparent btn-block" type="submit"> Share </button>
                                             </form>
-                                          </div>
+                                        </div>
                                             <div class="dropdown-item no-padding">
                                                 <form action="{{ route('tasks.destroy', $pinnedtask->id) }}" method="POST">
                                                     @method('DELETE')
