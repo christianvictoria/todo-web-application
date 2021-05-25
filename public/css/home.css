@@ -118,3 +118,10 @@
  .edit-max-height{
     max-height: 450px;
  }
+
+ .logout-style{
+     text-decoration: none;
+     font-weight: bold;
+     padding-left: 8px;
+     padding-top: 7px;
+ }

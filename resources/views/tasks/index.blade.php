@@ -27,8 +27,17 @@
             <div class="container-fluid">
                 <a class="navbar-brand"><strong>TODO-WEB-APPLICATION</strong></a>
                 <div class="d-flex">
-                    <button type="button" class="btn btn-primary">Share Task</button>
-                    <a class="nav-link black" href="">Logout</a>
+                    <a href="/sharetasks">
+                        <button type="button" class="btn btn-primary">Share Task</button>
+                    </a>
+                        <a href="{{ route('logout') }}" class="logout-style"
+                        onclick="event.preventDefault();
+                                      document.getElementById('logout-form').submit();">
+                         {{ __('Logout') }}
+                     </a>
+                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
                 </div>
             </div>
         </nav>
@@ -228,6 +237,7 @@
                             </li>
                             @endforeach
                         </ol>
+                        
                         <ol class="list-group list-group-numbered">
                             @foreach ($ongoingTasks as $ongoing)
                             <li class="list-group-item d-flex justify-content-between align-items-start">
@@ -261,16 +271,6 @@
                                                 </form>
                                             </div>
                                         </div>
-                                        <div class="dropdown-item no-padding">
-                                            <form action="{{ route('tasks.destroy', $upcoming->id) }}" method="POST">
-                                                @method('DELETE')
-                                                @csrf
-                                                <button class="btn btn-light btn-block danger" type="submit"> 
-                                                    Delete
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </div>
                                     </div>
                                 </span>
                             </li>
@@ -292,26 +292,26 @@
                                             <i class="fas fa-ellipsis-v"></i>
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                          <a class="dropdown-item no-padding" href="tasks/{{$missed->id}}/edit">
-                                            <button class="btn btn-light transparent btn-block" type="submit">View / Edit</button>
-                                        </a>
-                                          <div class="dropdown-item no-padding">    
-                                            <form method="POST" action="/tasks/{{ $missed->id }}/important">
-                                                @method('PUT')
-                                                @csrf
-                                                <button class="btn btn-light transparent btn-block" type="submit">Pin</button>
-                                            </form>
+                                            <a class="dropdown-item no-padding" href="tasks/{{$missed->id}}/edit">
+                                                <button class="btn btn-light transparent btn-block" type="submit">View / Edit</button>
+                                            </a>
+                                            <div class="dropdown-item no-padding">    
+                                                <form method="POST" action="/tasks/{{ $missed->id }}/important">
+                                                    @method('PUT')
+                                                    @csrf
+                                                    <button class="btn btn-light transparent btn-block" type="submit">Pin</button>
+                                                </form>
+                                            </div>
+                                            <div class="dropdown-item no-padding">
+                                                <form action="{{ route('tasks.destroy', $missed->id) }}" method="POST">
+                                                    @method('DELETE')
+                                                    @csrf
+                                                    <button class="btn btn-light btn-block" type="submit"> 
+                                                        Delete
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </div>
-                                        <div class="dropdown-item no-padding">
-                                            <form action="{{ route('tasks.destroy', $missed->id) }}" method="POST">
-                                                @method('DELETE')
-                                                @csrf
-                                                <button class="btn btn-light btn-block" type="submit"> 
-                                                    Delete
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </div>
                                     </div>
                                 </span>
                             </li>
