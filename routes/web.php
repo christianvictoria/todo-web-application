@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TasksController;
+use App\Http\Controllers\ShareTasksController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 /*
@@ -33,3 +34,5 @@ Route::delete('/tasks/{task}', [TasksController::class, 'destroy'])->name('tasks
 Route::put('/tasks/{task}/{pinned}', [TasksController::class, 'update']); // This is route for editing specific task
 // Route::put('/tasks/{task}/{unpinned}', [TasksController::class, 'update']); // This is route for editing specific task
 Route::get('/tasks/{task}/edit', [TasksController::class, 'edit']); // This is edit page 
+
+Route::get('/sharetasks',[ShareTasksController::class, 'index'])->name('sharetasks.index');

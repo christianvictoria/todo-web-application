@@ -114,3 +114,7 @@
  .danger{
      color: red;
  }
+
+ .edit-max-height{
+    max-height: 450px;
+ }

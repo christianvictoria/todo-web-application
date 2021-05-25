@@ -32,46 +32,47 @@
                 @method('PUT')
                 @csrf
                 <div class="mb-0">
-                    <label class="label-style" for="todo_title">Title:</label>
-                    <div>
-                        <input type="text" class="form-control mb-2 @error('todo_title') is-invalid @enderror" id="todo_title" name="todo_title" value="{{ $task->todo_title }}" placeholder="Type Title here..">
-                        @error('todo_title')
-                            <p role="alert" class="alert alert-dark">
-                                {{ $message }}
-                            </p>
-                        @enderror
-                    </div>
-                    <label class="label-style" for="todo_deadline">Deadline:</label>
-                    <div class="mb-2">
-                        <input class="date form-control mb-2" name="todo_deadline" type="text" placeholder="Select Date" value="{{ $task->todo_deadline }}">
-                    </div>
-                    <label class="label-style" for="todo_content">Content:</label>
-                    <div>
-                        <textarea class="form-control mb-2 @error('todo_content') is-invalid @enderror" id="todo_content" name="todo_content" placeholder="Type content here.." style="height: 240px">{{ $task->todo_content }}</textarea>
-                        @error('todo_content')
-                            <p role="alert" class="alert alert-dark">
-                                {{ $message }}
-                            </p>
-                        @enderror
-                    </div>
-                    <div>
-                        <p class="attachment-style">Attachments: </p>
-                        @if ($task->todo_attachment)
-                            <img class="image-style" style="max-width: 300px;" src="{{ asset('/storage/img/'.$task->todo_attachment) }}" alt="{{ $task->todo_attachment }}"/>
-                        @else
-                            No attachments available
-                        @endif
-                    </div> 
-                </div>
-                <div class="shadow-sm p-3">
-                    <div class="row">
-                        <div class="col-sm-1 mt-2 mr-3">
-                            <input class="hidden" name="img" id="upload" type="file"/>
-                            <a href="" class="text-decor-null" id="upload_link">
-                                <i class="far fa-images fa-2x icon-task-setting text-decor-null"></i>
-                            </a>
+                    <div class="row justify-content-center items-start">
+                        <div class="col-6">
+                            <label class="label-style" for="todo_title">Title:</label>
+                            <div>
+                                <input type="text" class="form-control mb-2 @error('todo_title') is-invalid @enderror" id="todo_title" name="todo_title" value="{{ $task->todo_title }}" placeholder="Type Title here..">
+                                @error('todo_title')
+                                    <p role="alert" class="alert alert-dark">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
+                            </div>
+                            <label class="label-style" for="todo_deadline">Deadline:</label>
+                            <div class="mb-2">
+                                <input class="date form-control mb-2" name="todo_deadline" type="text" placeholder="Select Date" value="{{ $task->todo_deadline }}">
+                            </div>
+                            <label class="label-style" for="todo_content">Content:</label>
+                            <div>
+                                <textarea class="form-control mb-2 @error('todo_content') is-invalid @enderror" id="todo_content" name="todo_content" placeholder="Type content here.." style="height: 240px">{{ $task->todo_content }}</textarea>
+                                @error('todo_content')
+                                    <p role="alert" class="alert alert-dark">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
+                            </div>
                         </div>
-                        <div class="col d-flex justify-content-end">
+                        <div class="col-6">
+                            <div>
+                                <p class="attachment-style">Attachments: </p>
+                                @if ($task->todo_attachment)
+                                    <img class="image-style" style="max-width: 650px; max-height: 350px;" src="{{ asset('/storage/img/'.$task->todo_attachment) }}" alt="{{ $task->todo_attachment }}"/>
+                                @else
+                                    No attachments available
+                                @endif
+                            </div> 
+                            <br>
+                            <input class="hidden" name="img" id="upload" type="file"/>
+                                <a href="" class="text-decor-null" id="upload_link">
+                                    <i class="far fa-images fa-2x icon-task-setting text-decor-null"></i>
+                                </a>
+                        </div>
+                        <div class="col d-flex justify-content-start">
                             <button type="submit" class="btn btn-primary">
                                 <strong>{{ __('Save') }}</strong>
                             </button>
