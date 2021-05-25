@@ -12,9 +12,15 @@ class TasksController extends Controller
     public function index(Request $request)
     {   
         $user = User::find(Auth::id());
-        $tasks = $user->tasks()->where('fld_isImportant','=','0' )->get();
+
+        $searchInput = $request->input('searchInput');
+        
+        $tasks = $user->tasks()->search($searchInput)->where('fld_isImportant','=','0' )->get();
+
         $pinnedTasks = $user->tasks()->where('fld_isImportant','=','1')->get();
-        return view('tasks.index', compact('tasks', 'pinnedTasks'));
+
+        return view('tasks.index', compact('tasks', 'pinnedTasks'));  
+
     }
 
     public function create()

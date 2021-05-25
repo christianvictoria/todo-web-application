@@ -35,8 +35,8 @@
         <div class="container">
             <div class="row justify-content-center align-items-start">
                 <div class="col">
-                    <form method="POST" action="/tasks">
-                        @csrf
+                    <form action="/tasks" method="GET">
+                    {{csrf_field()}}
                         <div class="input-group">
                             <input type="text" name="searchInput" id="searchInput" class="form-control" placeholder="Search task here..">
                             <button type ="submit" class="input-group-text">
@@ -44,55 +44,55 @@
                             </button>
                         </div>
                     </form>
-                
-                <div class="set-height-tasks border" >
-                    <div class="p-3 sticky-top border set-bg-white">
-                        <h3 class="text-center header-size"><strong>Tasks</strong></h3>
-                    </div>
-                    <ol class="list-group list-group-numbered">
-                        @foreach($tasks as $task)
-                        <li class="list-group-item d-flex justify-content-between align-items-right">
-                                <div class="ms-2 me-auto">
-                                        <div class="fw-bold"> <strong>{{ $task->todo_title }}</strong></div>
-                                        <p class="cut-paragraph">{{ $task->todo_content }}</p>
-                                </div>
-                                <span>
-                                    <div class="dropdown">
-                                        <button class="btn btn-light" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v"></i>
-                                        </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                          <a class="dropdown-item no-padding" href="tasks/{{$task->id}}/edit">
-                                            <button class="btn btn-light transparent btn-block" type="submit">
-                                                View / Edit
-                                            </button>
-                                        </a>
-                                          <div class="dropdown-item no-padding">            
-                                            <form method="POST" action="/tasks/{{ $task->id }}/important">
-                                                @method('PUT')
-                                                @csrf
-                                                <button class="btn btn-light transparent btn-block" type="submit">
-                                                    Pin
-                                                </button>
-                                            </form>
-                                          </div>
-                                            <div class="dropdown-item no-padding">
-                                                <form action="{{ route('tasks.destroy', $task->id) }}" method="POST">
-                                                    @method('DELETE')
-                                                    @csrf
-                                                    <button class="btn btn-light btn-block" type="submit"> 
-                                                        Delete
-                                                    </button>
-                                                </form>
-                                            </div>
+
+                        <div class="set-height-tasks border" >
+                            <div class="p-3 sticky-top border set-bg-white">
+                                <h3 class="text-center header-size"><strong>Tasks</strong></h3>
+                            </div>
+                            <ol class="list-group list-group-numbered">
+                                @foreach($tasks as $task)
+                                <li class="list-group-item d-flex justify-content-between align-items-right">
+                                        <div class="ms-2 me-auto">
+                                                <div class="fw-bold"> <strong>{{ $task->todo_title }}</strong></div>
+                                                <p class="cut-paragraph">{{ $task->todo_content }}</p>
                                         </div>
-                                      </div>
-                                </span>
-                        </li>
-                        @endforeach
-                    </ol>
-                </div>
-        
+                                        <span>
+                                            <div class="dropdown">
+                                                <button class="btn btn-light" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="fas fa-ellipsis-v"></i>
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item no-padding" href="tasks/{{$task->id}}/edit">
+                                                    <button class="btn btn-light transparent btn-block" type="submit">
+                                                        View / Edit
+                                                    </button>
+                                                </a>
+                                                <div class="dropdown-item no-padding">            
+                                                    <form method="POST" action="/tasks/{{ $task->id }}/important">
+                                                        @method('PUT')
+                                                        @csrf
+                                                        <button class="btn btn-light transparent btn-block" type="submit">
+                                                            Pin
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                                    <div class="dropdown-item no-padding">
+                                                        <form action="{{ route('tasks.destroy', $task->id) }}" method="POST">
+                                                            @method('DELETE')
+                                                            @csrf
+                                                            <button class="btn btn-light btn-block" type="submit"> 
+                                                                Delete
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </span>
+                                </li>
+                                @endforeach
+                            </ol>
+                        </div>
+
                 </div>
                 <div class="col">
                     <form method="POST" action="/tasks" enctype="multipart/form-data">

@@ -16,4 +16,10 @@ class Task extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+
+    public static function scopeSearch($query, $searchInput)
+    {
+        return $query->where('todo_title', 'LIKE', '%' .$searchInput. '%')
+                     ->orWhere('todo_content', 'LIKE', '%' .$searchInput. '%');
+    }
 }

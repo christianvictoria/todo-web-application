@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TasksController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,7 +25,7 @@ Auth::routes();
 Route::get('/home', [TasksController::class, 'index']);
 
 // End points 
-Route::get('/tasks', [TasksController::class, 'index']); // This is home 
+Route::get('/tasks', [TasksController::class, 'index'])->name('tasks.index'); // This is home 
 Route::get('/tasks/create', [TasksController::class, 'create']); // This is home 
 Route::post('/tasks', [TasksController::class, 'store']); // This is route for creating
 
