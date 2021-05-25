@@ -57,6 +57,7 @@
                                         <p class="cut-paragraph">{{ $task->todo_content }}</p>
                                 </div>
                                 <span>
+                                   
                                     <div class="dropdown">
                                         <button class="btn btn-light" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="fas fa-ellipsis-v"></i>
@@ -76,11 +77,20 @@
                                                 </button>
                                             </form>
                                           </div>
+                                          <div class="dropdown-item no-padding">            
+                                            <form method="POST" action="">
+                                                <!-- @method('PUT') -->
+                                                @csrf
+                                                <button class="btn btn-light transparent btn-block" type="submit">
+                                                    Share
+                                                </button>
+                                            </form>
+                                          </div>
                                             <div class="dropdown-item no-padding">
                                                 <form action="{{ route('tasks.destroy', $task->id) }}" method="POST">
                                                     @method('DELETE')
                                                     @csrf
-                                                    <button class="btn btn-light btn-block" type="submit"> 
+                                                    <button class="btn btn-light btn-block danger" type="submit"> 
                                                         Delete
                                                     </button>
                                                 </form>
@@ -164,11 +174,20 @@
                                                 </button>
                                             </form>
                                           </div>
+                                            <div class="dropdown-item no-padding">            
+                                                <form method="POST" action="">
+                                                    <!-- @method('PUT') -->
+                                                    @csrf
+                                                    <button class="btn btn-light transparent btn-block" type="submit">
+                                                        Share
+                                                    </button>
+                                                </form>
+                                            </div>
                                             <div class="dropdown-item no-padding">
                                                 <form action="{{ route('tasks.destroy', $pinnedtask->id) }}" method="POST">
                                                     @method('DELETE')
                                                     @csrf
-                                                    <button class="btn btn-light btn-block" type="submit"> 
+                                                    <button class="btn btn-light btn-block danger" type="submit"> 
                                                         Delete
                                                     </button>
                                                 </form>
@@ -220,7 +239,7 @@
                                                 <form action="{{ route('tasks.destroy', $upcoming->id) }}" method="POST">
                                                     @method('DELETE')
                                                     @csrf
-                                                    <button class="btn btn-light btn-block" type="submit"> 
+                                                    <button class="btn btn-light btn-block danger" type="submit"> 
                                                         Delete
                                                     </button>
                                                 </form>
@@ -264,7 +283,7 @@
                                                 <form action="{{ route('tasks.destroy', $missed->id) }}" method="POST">
                                                     @method('DELETE')
                                                     @csrf
-                                                    <button class="btn btn-light btn-block" type="submit"> 
+                                                    <button class="btn btn-light btn-block danger" type="submit"> 
                                                         Delete
                                                     </button>
                                                 </form>
