@@ -55,11 +55,11 @@
                         @enderror
                     </div>
                     <div>
-                        <p class="attachment-style">Attachments: </p>
                         @if ($task->todo_attachment)
+                            <p class="attachment-style">Image Attached: </p>
                             <img class="image-style" style="max-width: 300px;" src="{{ asset('/storage/img/'.$task->todo_attachment) }}" alt="{{ $task->todo_attachment }}"/>
                         @else
-                            No attachments available
+                            No image attachment available
                         @endif
                     </div> 
                 </div>
