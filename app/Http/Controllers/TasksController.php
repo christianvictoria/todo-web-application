@@ -11,16 +11,14 @@ class TasksController extends Controller
 {
     public function index(Request $request)
     {   
+        $today = date("Y-m-d");
         $user = User::find(Auth::id());
-
         $searchInput = $request->input('searchInput');
-        
-        $tasks = $user->tasks()->search($searchInput)->where('fld_isImportant','=','0' )->get();
-
+        $upcomingTasks = $user->tasks()->where([['fld_isImportant','=','0'], ['todo_deadline','>',"$today"]])->get();
+        $tasks = $user->tasks()->search($searchInput)->where('fld_isImportant','=','0')->get();
         $pinnedTasks = $user->tasks()->where('fld_isImportant','=','1')->get();
-
-        return view('tasks.index', compact('tasks', 'pinnedTasks'));  
-
+        $missedTasks = $user->tasks()->where([['fld_isImportant','=','0'], ['todo_deadline','<',"$today"]])->get();
+        return view('tasks.index', compact('tasks', 'pinnedTasks', 'missedTasks','upcomingTasks'));
     }
 
     public function create()
