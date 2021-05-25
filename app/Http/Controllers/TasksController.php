@@ -19,7 +19,7 @@ class TasksController extends Controller
         //increment 2 days
         $mod_date = strtotime($date_today."+ 3 days");
         $date_tree_days_ahead = date("Y-m-d",$mod_date);
-        $upcomingTasks = $user->tasks()->where([['todo_deadline','>',"$date_today"], ['todo_deadline', '<', "$date_tree_days_ahead"]])->get();
+        $upcomingTasks = $user->tasks()->where([['todo_deadline','>',"$date_today"], ['todo_deadline', '<=', "$date_tree_days_ahead"]])->get();
         $ongoingTasks = $user->tasks()->where([['todo_deadline','=',"$date_today"]])->get();
         $missedTasks = $user->tasks()->where([['todo_deadline','<',"$date_today"]])->get();
         return view('tasks.index', compact('tasks', 'pinnedTasks', 'upcomingTasks', 'ongoingTasks', 'missedTasks',));

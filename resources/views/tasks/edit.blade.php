@@ -67,15 +67,20 @@
                     <div class="row">
                         <div class="col-sm-1 mt-2 mr-3">
                             <input class="hidden" name="img" id="upload" type="file"/>
-                            <a href="" class="text-decor-null" id="upload_link"><i class="far fa-images fa-2x icon-task-setting text-decor-null"></i></a>
+                            <a href="" class="text-decor-null" id="upload_link">
+                                <i class="far fa-images fa-2x icon-task-setting text-decor-null"></i>
+                            </a>
                         </div>
                         <div class="col d-flex justify-content-end">
-                            <button type="submit" class="btn btn-primary"><strong>{{ __('Save') }}</strong></button>
+                            <button type="submit" class="btn btn-primary">
+                                <strong>{{ __('Save') }}</strong>
+                            </button>
                         </div>
                     </div>
                 </div>
             </form>
-        </div>        
+        </div>     
+           
         <script type="text/javascript">
             $('.date').datepicker({format: 'yyyy-mm-dd'});  
         </script> 

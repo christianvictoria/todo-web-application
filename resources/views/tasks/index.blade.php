@@ -87,6 +87,7 @@
                     </ol>
                     </div>
                 </div>
+
                 <div class="col">
                     <form method="POST" action="/tasks" enctype="multipart/form-data">
                         @method('POST')
@@ -119,9 +120,9 @@
                         </div>
                     </form>
                 </div>
+                
+                <!-- Pinned Task Part -->
                 <div class="col">
-        
-                    <!-- Pinned Task Part -->
                     <div class="set-height-pinned-task border">
                         <div class="p-3 sticky-top border set-bg-white">
                             <h3 class="text-center header-size"><strong>Pinned Tasks</strong></h3>
@@ -157,14 +158,14 @@
                                                 </form>
                                             </div>
                                         </div>
-                                      </div>
+                                    </div>
                                 </span>
                             </li>
                             @endforeach
                         </ol>
-                    </div>
-        
+                    </div>       
                     <br>
+
                     <!-- Missed Tasks -->
                     <div class="set-height-pinned-task border">
                         <div class="p-3 sticky-top border set-bg-white">
@@ -175,9 +176,9 @@
                             <li class="list-group-item d-flex justify-content-between align-items-start">
                                 <div class="ms-2 me-auto">
                                     <div class="fw-bold"><strong>{{$upcoming->todo_title}}</strong>
-                                        <span class="badge badge-primary">Upcoming</span></div>
-                                    <p class="cut-paragraph">{{$upcoming->todo_content}}
-                                    </p>
+                                        <span class="badge badge-primary">Upcoming</span>
+                                    </div>
+                                        <p class="cut-paragraph">{{$upcoming->todo_content}}</p>
                                 </div>
                                 <span>
                                     <div class="dropdown">
@@ -188,7 +189,7 @@
                                           <a class="dropdown-item no-padding" href="tasks/{{$upcoming->id}}/edit">
                                             <button class="btn btn-light transparent btn-block" type="submit">View / Edit</button>
                                         </a>
-                                          <div class="dropdown-item no-padding">            
+                                          <div class="dropdown-item no-padding">  
                                             <form method="POST" action="/tasks/{{ $upcoming->id }}/important">
                                                 @method('PUT')
                                                 @csrf
@@ -241,19 +242,30 @@
                                                 </form>
                                             </div>
                                         </div>
-                                      </div>
+                                        <div class="dropdown-item no-padding">
+                                            <form action="{{ route('tasks.destroy', $upcoming->id) }}" method="POST">
+                                                @method('DELETE')
+                                                @csrf
+                                                <button class="btn btn-light btn-block" type="submit"> 
+                                                    Delete
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    </div>
                                 </span>
                             </li>
                             @endforeach
                         </ol>
+
                         <ol class="list-group list-group-numbered">
                             @foreach ($missedTasks as $missed)
                             <li class="list-group-item d-flex justify-content-between align-items-start">
                                 <div class="ms-2 me-auto">
                                     <div class="fw-bold"><strong>{{$missed->todo_title}}</strong>
-                                        <span class="badge badge-danger">Missed</span></div>
-                                    <p class="cut-paragraph">{{$missed->todo_content}}
-                                    </p>
+                                        <span class="badge badge-danger">Missed</span>
+                                    </div>
+                                    <p class="cut-paragraph">{{$missed->todo_content}}</p>
                                 </div>
                                 <span>
                                     <div class="dropdown">
@@ -264,22 +276,24 @@
                                           <a class="dropdown-item no-padding" href="tasks/{{$missed->id}}/edit">
                                             <button class="btn btn-light transparent btn-block" type="submit">View / Edit</button>
                                         </a>
-                                          <div class="dropdown-item no-padding">            
+                                          <div class="dropdown-item no-padding">    
                                             <form method="POST" action="/tasks/{{ $missed->id }}/important">
                                                 @method('PUT')
                                                 @csrf
                                                 <button class="btn btn-light transparent btn-block" type="submit">Pin</button>
                                             </form>
-                                          </div>
-                                            <div class="dropdown-item no-padding">
-                                                <form action="{{ route('tasks.destroy', $missed->id) }}" method="POST">
-                                                    @method('DELETE')
-                                                    @csrf
-                                                    <button class="btn btn-light btn-block" type="submit">Delete</button>
-                                                </form>
-                                            </div>
                                         </div>
-                                      </div>
+                                        <div class="dropdown-item no-padding">
+                                            <form action="{{ route('tasks.destroy', $missed->id) }}" method="POST">
+                                                @method('DELETE')
+                                                @csrf
+                                                <button class="btn btn-light btn-block" type="submit"> 
+                                                    Delete
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    </div>
                                 </span>
                             </li>
                             @endforeach
@@ -288,6 +302,7 @@
                 </div>
             </div>
         </div>
+
         <script type="text/javascript">
             $('.date').datepicker({format: 'yyyy-mm-dd'});  
         </script> 
