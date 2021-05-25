@@ -33,55 +33,48 @@
         </nav>
         
         <div class="container">
+               <div class="row justify-content-end items-end">
+                    <div class=".col-md-4 .offset-md-4">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                               Options
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Shared Tasks</a>
+                                <a class="dropdown-item" href="#">Shared with me</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="row justify-content-center items-start">
                     <div class="col-8">
-                        <div class="set-height-tasks border">
+                        <div class="set-height-tasks border" style="margin-top: -10px;">
                             <div class="p-3 sticky-top border set-bg-white">
                                 <h3 class="text-center header-size"><strong>Shared Tasks</strong></h3>
                             </div>
                             <ol class="list-group list-group-numbered">
-                                 <div class="list-group">
-                                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                                <li class="list-group-item d-flex justify-content-between align-items-right">
+                                    <div class="ms-2 me-auto">
                                         <div class="d-flex w-100 justify-content-between">
-                                        <h5 class="mb-1">List group item heading</h5>
-                                        <small>3 days ago</small>
-                                        </div>
-                                        <p class="mb-1">Donec id elit non mi porta gravida at eget metus.</p>
-                                        <strong><p>Daryl shared his task to me*</p></strong>
-                                    </a>
-                                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                                        <div class="d-flex w-100 justify-content-between">
-                                        <h5 class="mb-1">List group item heading</h5>
-                                        <small class="text-muted">3 days ago</small>
+                                           <h5 class="mb-1">List group item heading</h5>
+                                            <!-- <small class="text-muted">3 days ago</small> -->
                                         </div>
                                         <p class="mb-1">Donec id elit non mi porta gravida at eget metus.</p>
                                         <strong><p>You shared this Task to Daryl*</p></strong>
-                                    </a>
-                                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                                        <div class="d-flex w-100 justify-content-between">
-                                        <h5 class="mb-1">List group item heading</h5>
-                                        <small class="text-muted">3 days ago</small>
+                                    </div>
+                                    <span>
+                                    <div class="dropdown">
+                                            <button class="btn btn-light" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item no-padding">
+                                                    <button class="btn btn-light transparent btn-block" type="submit"> View / Edit </button>
+                                                </a>
+                                            </div>
                                         </div>
-                                        <p class="mb-1">Donec id elit non mi porta gravida at eget metus.</p>
-                                        <strong><p>You shared this Task to Daryl*</p></strong>
-                                    </a>
-                                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                                        <div class="d-flex w-100 justify-content-between">
-                                        <h5 class="mb-1">List group item heading</h5>
-                                        <small class="text-muted">3 days ago</small>
-                                        </div>
-                                        <p class="mb-1">Donec id elit non mi porta gravida at eget metus.</p>
-                                        <strong><p>You shared this Task to Daryl, and 3 others*</p></strong>
-                                    </a>
-                                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                                        <div class="d-flex w-100 justify-content-between">
-                                        <h5 class="mb-1">List group item heading</h5>
-                                        <small class="text-muted">3 days ago</small>
-                                        </div>
-                                        <p class="mb-1">Donec id elit non mi porta gravida at eget metus.</p>
-                                        <strong><p>You shared this Task to Daryl*</p></strong>
-                                    </a>
-                                </div> 
+                                    </span>
+                                </li> 
                             </ol>
                         </div>
                     </div>
