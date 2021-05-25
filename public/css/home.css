@@ -99,3 +99,14 @@
 .datepicker-style{
     max-width: 250px;
 }
+
+.icon-right-missed{
+   right: 0;
+   color: red;
+}
+
+
+.icon-right-upcoming{
+    right: 0;
+    color: blue;
+ }

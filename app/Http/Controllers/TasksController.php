@@ -11,10 +11,15 @@ class TasksController extends Controller
 {
     public function index(Request $request)
     {   
+        $today = date("Y-m-d");
         $user = User::find(Auth::id());
-        $tasks = $user->tasks()->where('fld_isImportant','=','0' )->get();
+        $searchInput = $request->input('searchInput');
+
+        $upcomingTasks = $user->tasks()->where([['fld_isImportant','=','0'], ['todo_deadline','>',"$today"]])->get();
+        $tasks = $user->tasks()->search($searchInput)->get();
         $pinnedTasks = $user->tasks()->where('fld_isImportant','=','1')->get();
-        return view('tasks.index', compact('tasks', 'pinnedTasks'));
+        $missedTasks = $user->tasks()->where([['fld_isImportant','=','0'], ['todo_deadline','<',"$today"]])->get();
+        return view('tasks.index', compact('tasks', 'pinnedTasks', 'missedTasks','upcomingTasks'));
     }
 
     public function create() { return view('tasks.index', ['tasks' => $tasks]); }
