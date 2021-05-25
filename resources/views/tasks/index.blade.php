@@ -47,7 +47,7 @@
                 
                 <div class="set-height-tasks border" >
                     <div class="p-3 sticky-top border set-bg-white">
-                        <h3 class="text-center header-size"><strong>Tasks</strong></h3>
+                        <h3 class="text-center header-size"><strong>My Tasks</strong></h3>
                     </div>
                     <ol class="list-group list-group-numbered">
                         @foreach($tasks as $task)
@@ -188,46 +188,92 @@
                             <h3 class="text-center header-size"><strong>Notification</strong></h3>
                         </div>
                         <ol class="list-group list-group-numbered">
+                            @foreach ($upcomingTasks as $upcoming)
                             <li class="list-group-item d-flex justify-content-between align-items-start">
                                 <div class="ms-2 me-auto">
-                                    <div class="fw-bold">Subheading</div>
-                                    Cras justo odio
+                                    <div class="fw-bold"><strong>{{$upcoming->todo_title}}</strong>
+                                        <span class="badge badge-primary">Upcoming</span></div>
+                                    <p class="cut-paragraph">{{$upcoming->todo_content}}
+                                    </p>
                                 </div>
                                 <span>
-                                    <i class="fad fa-exclamation-circle mr-2 icons-setting"></i>   
-                                    <i class="far fa-trash-alt icons-setting"></i>
+                                    <div class="dropdown">
+                                        <button class="btn btn-light" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                          <a class="dropdown-item no-padding" href="tasks/{{$upcoming->id}}/edit">
+                                            <button class="btn btn-light transparent btn-block" type="submit">
+                                                View / Edit
+                                            </button>
+                                        </a>
+                                          <div class="dropdown-item no-padding">            
+                                            <form method="POST" action="/tasks/{{ $upcoming->id }}/important">
+                                                @method('PUT')
+                                                @csrf
+                                                <button class="btn btn-light transparent btn-block" type="submit">
+                                                    Pin
+                                                </button>
+                                            </form>
+                                          </div>
+                                            <div class="dropdown-item no-padding">
+                                                <form action="{{ route('tasks.destroy', $upcoming->id) }}" method="POST">
+                                                    @method('DELETE')
+                                                    @csrf
+                                                    <button class="btn btn-light btn-block" type="submit"> 
+                                                        Delete
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                      </div>
                                 </span>
                             </li>
+                            @endforeach
+                        </ol>
+                        <ol class="list-group list-group-numbered">
+                            @foreach ($missedTasks as $missed)
                             <li class="list-group-item d-flex justify-content-between align-items-start">
                                 <div class="ms-2 me-auto">
-                                    <div class="fw-bold">Subheading</div>
-                                    Cras justo odio
+                                    <div class="fw-bold"><strong>{{$missed->todo_title}}</strong>
+                                        <span class="badge badge-danger">Missed</span></div>
+                                    <p class="cut-paragraph">{{$missed->todo_content}}
+                                    </p>
                                 </div>
                                 <span>
-                                    <i class="fad fa-exclamation-circle mr-2"></i>
-                                    <i class="far fa-trash-alt"></i>
+                                    <div class="dropdown">
+                                        <button class="btn btn-light" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                          <a class="dropdown-item no-padding" href="tasks/{{$missed->id}}/edit">
+                                            <button class="btn btn-light transparent btn-block" type="submit">
+                                                View / Edit
+                                            </button>
+                                        </a>
+                                          <div class="dropdown-item no-padding">            
+                                            <form method="POST" action="/tasks/{{ $missed->id }}/important">
+                                                @method('PUT')
+                                                @csrf
+                                                <button class="btn btn-light transparent btn-block" type="submit">
+                                                    Pin
+                                                </button>
+                                            </form>
+                                          </div>
+                                            <div class="dropdown-item no-padding">
+                                                <form action="{{ route('tasks.destroy', $missed->id) }}" method="POST">
+                                                    @method('DELETE')
+                                                    @csrf
+                                                    <button class="btn btn-light btn-block" type="submit"> 
+                                                        Delete
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                      </div>
                                 </span>
                             </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-start">
-                                <div class="ms-2 me-auto">
-                                    <div class="fw-bold">Subheading</div>
-                                    Cras justo odio
-                                </div>
-                                <span>
-                                    <i class="fad fa-exclamation-circle mr-2"></i>
-                                    <i class="far fa-trash-alt"></i>
-                                </span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-start">
-                                <div class="ms-2 me-auto">
-                                    <div class="fw-bold">Subheading</div>
-                                    Cras justo odio
-                                </div>
-                                <span>
-                                    <i class="fad fa-exclamation-circle mr-2"></i>
-                                    <i class="far fa-trash-alt"></i>
-                                </span>
-                            </li>
+                            @endforeach
                         </ol>
                     </div>
                 
