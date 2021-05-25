@@ -22,11 +22,25 @@
         <link type="text/css" rel="stylesheet" href="{{ asset('css/home.css') }}">
         
     </head>
-@extends('layouts.app')
-
-
-@section('content')
     <body>
+        <nav class="navbar sticky-top navbar-light p-3 mb-3 set-bg-white" style="box-shadow: 0px 1px 10px #999;">
+            <div class="container-fluid">
+                <a class="navbar-brand"><strong>TODO-WEB-APPLICATION</strong></a>
+                <div class="d-flex">
+                    <a href="/tasks">
+                        <button type="button" class="btn btn-primary">Tasks</button>
+                    </a>
+                        <a href="{{ route('logout') }}" class="logout-style"
+                        onclick="event.preventDefault();
+                                      document.getElementById('logout-form').submit();">
+                         {{ __('Logout') }}
+                     </a>
+                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </div>
+            </div>
+        </nav>
         <div class="container">
             <form method="POST" enctype="multipart/form-data" action="/tasks/{{ $task->id }}/!important">
                 @method('PUT')
@@ -81,10 +95,9 @@
                 </div>
             </form>
         </div>     
-           
+
         <script type="text/javascript">
             $('.date').datepicker({format: 'yyyy-mm-dd'});  
         </script> 
     </body>
-    @endsection
 </html>
