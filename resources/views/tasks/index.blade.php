@@ -83,7 +83,7 @@
                                                     </form>
                                                 </div>
                                                 <div class="dropdown-item no-padding">            
-                                                    <a href="/sendhtmlemail">
+                                                    <a href="/sendhtmlemail/{{ $task->todo_title }}/{{ $task->todo_content }}">
                                                         <button class="btn btn-light transparent btn-block" type="submit"> Share </button>
                                                     </a>
                                                 </div>

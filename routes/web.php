@@ -38,5 +38,5 @@ Route::get('/tasks/{task}/edit', [TasksController::class, 'edit']); // This is e
 
 Route::get('/sharetasks', [ShareTasksController::class, 'index'])->name('sharetasks.index');
 Route::get('/sendbasicemail', [MailController:: class, 'basic_email']);
-Route::get('/sendhtmlemail', [MailController:: class, 'html_email']);
+Route::get('/sendhtmlemail/{title}/{content}', [MailController:: class, 'html_email']);
 Route::get('/sendattachmentemail', [MailController:: class,'attachment_email']);

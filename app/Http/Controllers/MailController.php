@@ -19,8 +19,8 @@ class MailController extends Controller {
       echo "Basic Email Sent. Check your inbox.";
    }
    
-   public function html_email(Title $title, Content $content) {
-      $data = array('name'=>"Name Here", 'content'=>'Sample Content or message');
+   public function html_email($title, $content) {
+      $data = array('name'=>"Name Here", 'title'=>$title, 'content'=>$content);
       Mail::send('mail', $data, function($message) {
          $message->to('daryltadss21@gmail.com', 'Todo Web Application')->subject
             ('Todo Task Shared');
