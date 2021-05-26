@@ -8,36 +8,19 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 class MailController extends Controller {
-   public function basic_email() {
-      $data = array('name'=>"Name Goes Here");
-   
-      Mail::send(['text'=>'mail'], $data, function($message) {
-         $message->to('daryltadss21@gmail.com', 'Todo Web Application')->subject
-            ('Todo Task Shared');
-         $message->from('daryljohntadeo359@gmail.com','Todo Admin');
-      });
-      echo "Basic Email Sent. Check your inbox.";
-   }
-   
-   public function html_email($title, $content, $name) {
+
+   public function html_email(Request $request, $title, $content, $name) {
+      request()->validate([
+         'email' => 'required',
+      ]);
+      $emailTo = $request->email;
       $data = array('name'=>$name, 'title'=>$title, 'content'=>$content);
-      Mail::send('mail', $data, function($message) {
-         $message->to('daryltadss21@gmail.com', 'Todo Web Application')->subject
-            ('Todo Task Shared');
-         $message->from('daryljohntadeo359@gmail.com','Todo Admin');
+      Mail::send('mail', $data, function($message)use($emailTo) {
+         $message->to($emailTo, 'PINNED');
+         $message->subject('Shared Task');
+         $message->from('daryljohntadeo359@gmail.com','PINNED Admin');
       });
-      echo "HTML Email Sent. Check your inbox.";
+      return redirect('/tasks');
    }
 
-   public function attachment_email() {
-      $data = array('name'=>"Virat Gandhi");
-      Mail::send('mail', $data, function($message) {
-         $message->to('daryltadss21@gmail.com', 'Tutorials Point')->subject
-            ('Laravel Testing Mail with Attachment');
-         $message->attach('C:\laravel-master\laravel\public\uploads\image.png');
-         $message->attach('C:\laravel-master\laravel\public\uploads\test.txt');
-         $message->from('xyz@gmail.com','Virat Gandhi');
-      });
-      echo "Email Sent with attachment. Check your inbox.";
-   }
 }

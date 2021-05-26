@@ -36,7 +36,7 @@ Route::put('/tasks/{task}/{pinned}', [TasksController::class, 'update']); // Thi
 // Route::put('/tasks/{task}/{unpinned}', [TasksController::class, 'update']); // This is route for editing specific task
 Route::get('/tasks/{task}/edit', [TasksController::class, 'edit']); // This is edit page 
 
-Route::get('/sharetasks', [ShareTasksController::class, 'index'])->name('sharetasks.index');
+Route::get('/share/{task}', [TasksController::class, 'share']);
 Route::get('/sendbasicemail', [MailController:: class, 'basic_email']);
-Route::get('/sendhtmlemail/{title}/{content}/{name}', [MailController:: class, 'html_email']);
+Route::post('/sendhtmlemail/{title}/{content}/{name}', [MailController:: class, 'html_email']);
 Route::get('/sendattachmentemail', [MailController:: class,'attachment_email']);

@@ -25,11 +25,8 @@
     <body>
         <nav class="navbar sticky-top navbar-light p-3 mb-3 set-bg-white" style="box-shadow: 0px 1px 10px #999;">
             <div class="container-fluid">
-                <a class="navbar-brand"><strong>TODO-WEB-APPLICATION</strong></a>
+                <a href="/tasks" class="navbar-brand"><strong style="letter-spacing: 5px; text-transform: uppercase;">Pinned</strong></a>
                 <div class="d-flex">
-                    <a href="/sharetasks">
-                        <button type="button" class="btn btn-primary">Share Task</button>
-                    </a>
                         <a href="{{ route('logout') }}" class="logout-style"
                         onclick="event.preventDefault();
                                       document.getElementById('logout-form').submit();">
@@ -71,7 +68,7 @@
                                             <button class="btn btn-light" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <i class="fas fa-ellipsis-v"></i>
                                             </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <div class="dropdown-menu" style="position: static; height: 5px;" aria-labelledby="dropdownMenuButton">
                                                 <a class="dropdown-item no-padding" href="tasks/{{$task->id}}/edit">
                                                     <button class="btn btn-light transparent btn-block" type="submit"> View / Edit </button>
                                                 </a>
@@ -83,7 +80,7 @@
                                                     </form>
                                                 </div>
                                                 <div class="dropdown-item no-padding">            
-                                                    <a href="/sendhtmlemail/{{ $task->todo_title }}/{{ $task->todo_content }}/{{ $user->name }}">
+                                                    <a href="/share/{{ $task->id }}">
                                                         <button class="btn btn-light transparent btn-block" type="submit"> Share </button>
                                                     </a>
                                                 </div>
@@ -154,7 +151,7 @@
                                         <button class="btn btn-light" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="fas fa-ellipsis-v"></i>
                                         </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <div class="dropdown-menu" style="position: static; height: 5px;" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item no-padding" href="tasks/{{$pinnedtask->id}}/edit">
                                                 <button class="btn btn-light transparent btn-block" type="submit">
                                                     View / Edit
@@ -167,13 +164,6 @@
                                                     <button class="btn btn-light transparent btn-block" type="submit">
                                                         Unpin
                                                     </button>
-                                                </form>
-                                            </div>
-                                            <div class="dropdown-item no-padding">            
-                                                <form method="POST">
-                                                    @method('PUT')
-                                                    @csrf
-                                                    <button class="btn btn-light transparent btn-block" type="submit"> Share </button>
                                                 </form>
                                             </div>
                                             <div class="dropdown-item no-padding">
@@ -211,7 +201,7 @@
                                         <button class="btn btn-light" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="fas fa-ellipsis-v"></i>
                                         </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <div class="dropdown-menu" style="position: static; height: 5px;" aria-labelledby="dropdownMenuButton">
                                           <a class="dropdown-item no-padding" href="tasks/{{$upcoming->id}}/edit">
                                             <button class="btn btn-light transparent btn-block" type="submit">View / Edit</button>
                                         </a>
@@ -250,7 +240,7 @@
                                         <button class="btn btn-light" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="fas fa-ellipsis-v"></i>
                                         </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <div class="dropdown-menu" style="position: static; height: 5px;" aria-labelledby="dropdownMenuButton">
                                           <a class="dropdown-item no-padding" href="tasks/{{$ongoing->id}}/edit">
                                             <button class="btn btn-light transparent btn-block" type="submit">View / Edit</button>
                                         </a>
@@ -289,7 +279,7 @@
                                         <button class="btn btn-light" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="fas fa-ellipsis-v"></i>
                                         </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <div class="dropdown-menu" style="position: static; height: 5px;" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item no-padding" href="tasks/{{$missed->id}}/edit">
                                                 <button class="btn btn-light transparent btn-block" type="submit">View / Edit</button>
                                             </a>

@@ -25,11 +25,8 @@
     <body>
         <nav class="navbar sticky-top navbar-light p-3 mb-3 set-bg-white" style="box-shadow: 0px 1px 10px #999;">
             <div class="container-fluid">
-                <a class="navbar-brand"><strong>TODO-WEB-APPLICATION</strong></a>
+                <a href="/tasks" class="navbar-brand"><strong style="letter-spacing: 5px; text-transform: uppercase;">Pinned</strong></a>
                 <div class="d-flex">
-                    <a href="/tasks">
-                        <button type="button" class="btn btn-primary">Tasks</button>
-                    </a>
                         <a href="{{ route('logout') }}" class="logout-style"
                         onclick="event.preventDefault();
                                       document.getElementById('logout-form').submit();">

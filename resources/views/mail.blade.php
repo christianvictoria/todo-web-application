@@ -1,3 +1,3 @@
 <h1>{{ $title }}</h1>
-<h4>{{ $content }}</h4>
-<p>Shared by: {{ $name }}</p>
+<h3>{{ $content }}</h3>
+<h4>Shared by: <strong>{{ $name }}</strong></h4>

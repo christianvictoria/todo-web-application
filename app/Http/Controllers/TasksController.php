@@ -53,6 +53,10 @@ class TasksController extends Controller
 
     public function edit(Task $task) { return view('tasks.edit', ['task' => $task]); }
 
+    public function share(Task $task) { 
+        $user = User::find(Auth::id());
+        return view('tasks.share', ['task' => $task, 'user' => $user]); }
+
     public function update(Task $task, $pinned, Request $request)
     {   
         $arr = array("important", "notimportant");
