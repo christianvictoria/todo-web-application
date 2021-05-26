@@ -22,7 +22,7 @@ class TasksController extends Controller
         $upcomingTasks = $user->tasks()->where([['todo_deadline','>',"$date_today"], ['todo_deadline', '<=', "$date_tree_days_ahead"]])->get();
         $ongoingTasks = $user->tasks()->where([['todo_deadline','=',"$date_today"]])->get();
         $missedTasks = $user->tasks()->where([['todo_deadline','<',"$date_today"]])->get();
-        return view('tasks.index', compact('tasks', 'pinnedTasks', 'upcomingTasks', 'ongoingTasks', 'missedTasks',));
+        return view('tasks.index', compact('tasks', 'pinnedTasks', 'upcomingTasks', 'ongoingTasks', 'missedTasks', 'user'));
     }
 
     public function create() { return view('tasks.index', ['tasks' => $tasks]); }
