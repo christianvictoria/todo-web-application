@@ -83,11 +83,9 @@
                                                     </form>
                                                 </div>
                                                 <div class="dropdown-item no-padding">            
-                                                    <form method="POST">
-                                                        <!-- @method('PUT') -->
-                                                        @csrf
+                                                    <a href="/sendhtmlemail">
                                                         <button class="btn btn-light transparent btn-block" type="submit"> Share </button>
-                                                    </form>
+                                                    </a>
                                                 </div>
                                                 <div class="dropdown-item no-padding">
                                                     <form action="{{ route('tasks.destroy', $task->id) }}" method="POST">

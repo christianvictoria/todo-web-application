@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TasksController;
 use App\Http\Controllers\ShareTasksController;
+use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 /*
@@ -35,4 +36,7 @@ Route::put('/tasks/{task}/{pinned}', [TasksController::class, 'update']); // Thi
 // Route::put('/tasks/{task}/{unpinned}', [TasksController::class, 'update']); // This is route for editing specific task
 Route::get('/tasks/{task}/edit', [TasksController::class, 'edit']); // This is edit page 
 
-Route::get('/sharetasks',[ShareTasksController::class, 'index'])->name('sharetasks.index');
+Route::get('/sharetasks', [ShareTasksController::class, 'index'])->name('sharetasks.index');
+Route::get('/sendbasicemail', [MailController:: class, 'basic_email']);
+Route::get('/sendhtmlemail', [MailController:: class, 'html_email']);
+Route::get('/sendattachmentemail', [MailController:: class,'attachment_email']);
