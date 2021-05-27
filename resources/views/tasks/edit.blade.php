@@ -58,6 +58,19 @@
                             <div class="mb-2">
                                 <input class="date form-control mb-2" name="todo_deadline" type="text" placeholder="Select Date" value="{{ $task->todo_deadline }}">
                             </div>
+                            <label class="label-style" for="todo_assign">Assign:</label>
+                            <div class="mb-2">
+                                <div class="dropdown show">
+                                        <a class="btn btn-light dropdown-toggle w-25 p-2" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Select
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </div>
+                                </div>
+                            </div>
                             <label class="label-style" for="todo_content">Content:</label>
                             <div>
                                 <textarea class="form-control mb-2 @error('todo_content') is-invalid @enderror" id="todo_content" name="todo_content" placeholder="Type content here.." style="height: 240px">{{ $task->todo_content }}</textarea>

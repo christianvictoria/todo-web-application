@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TasksController;
 use App\Http\Controllers\ShareTasksController;
+use App\Http\Controllers\AssignController;
 use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
@@ -40,3 +41,5 @@ Route::get('/share/{task}', [TasksController::class, 'share']);
 Route::get('/sendbasicemail', [MailController:: class, 'basic_email']);
 Route::post('/sendhtmlemail/{title}/{content}/{name}', [MailController:: class, 'html_email']);
 Route::get('/sendattachmentemail', [MailController:: class,'attachment_email']);
+
+Route::get('/assign', [TasksController::class, 'assign'])->name('assign.assign'); 

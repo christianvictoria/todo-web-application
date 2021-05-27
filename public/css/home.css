@@ -125,3 +125,7 @@
      padding-left: 8px;
      padding-top: 7px;
  }
+
+ .dropdown-style{
+     max-width: 100%;
+ }
