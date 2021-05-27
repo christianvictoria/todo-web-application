@@ -129,3 +129,8 @@
  .dropdown-style{
      max-width: 100%;
  }
+ 
+ .is-centered{
+    display: grid;
+    place-items: center;
+ }
