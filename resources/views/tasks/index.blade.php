@@ -55,7 +55,7 @@
                     <div class="set-height-tasks border" >
                         <div class="p-3 sticky-top border set-bg-white">
                             <h3 class="text-center header-size"><strong>My Tasks</strong></h3>
-                        </div>
+                        </div>                 
                         <ol class="list-group list-group-numbered">
                             @foreach($tasks as $task)
                                 <li class="list-group-item d-flex justify-content-between align-items-right">
@@ -86,6 +86,49 @@
                                                 </div>
                                                 <div class="dropdown-item no-padding">
                                                     <form action="{{ route('tasks.destroy', $task->id) }}" method="POST">
+                                                        @method('DELETE')
+                                                        @csrf
+                                                        <button class="btn btn-light btn-block danger" type="submit"> Delete </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </span>
+                                </li>
+                            @endforeach
+                        </ol>
+                        <ol class="list-group list-group-numbered">
+                            @foreach($assignedTasks as $assignTask)
+                                <li class="list-group-item d-flex justify-content-between align-items-right">
+                                    <div class="ms-2 me-auto">
+                                        <div class="fw-bold"> <strong>{{ $assignTask->todo_title }} </strong>
+                                            <span class="badge badge-primary">Assigned</span>
+                                         </div>
+                                        <p class="cut-paragraph">{{ $assignTask->todo_content }}</p>
+                                    </div>
+                                    <span>
+                                        <div class="dropdown">
+                                            <button class="btn btn-light" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </button>
+                                            <div class="dropdown-menu" style="position: static; height: 5px;" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item no-padding" href="tasks/{{$assignTask->id}}/edit">
+                                                    <button class="btn btn-light transparent btn-block" type="submit"> View / Edit </button>
+                                                </a>
+                                                <div class="dropdown-item no-padding">            
+                                                    <form method="POST" action="/tasks/{{ $assignTask->id }}/important">
+                                                        @method('PUT')
+                                                        @csrf
+                                                        <button class="btn btn-light transparent btn-block" type="submit"> Pin </button>
+                                                    </form>
+                                                </div>
+                                                <div class="dropdown-item no-padding">            
+                                                    <a href="/share/{{ $assignTask->id }}">
+                                                        <button class="btn btn-light transparent btn-block" type="submit"> Share </button>
+                                                    </a>
+                                                </div>
+                                                <div class="dropdown-item no-padding">
+                                                    <form action="{{ route('tasks.destroy', $assignTask->id) }}" method="POST">
                                                         @method('DELETE')
                                                         @csrf
                                                         <button class="btn btn-light btn-block danger" type="submit"> Delete </button>
