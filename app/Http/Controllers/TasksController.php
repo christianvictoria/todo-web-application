@@ -26,9 +26,10 @@ class TasksController extends Controller
         $missedTasks = $user->tasks()->where([['todo_deadline','<',"$date_today"]])->get();
 
         // for assign 
+        $assignedTasks = DB::table('tasks')->where([['assignedTo','=', $user->id]])->get(); 
 
 
-        return view('tasks.index', compact('tasks', 'pinnedTasks', 'upcomingTasks', 'ongoingTasks', 'missedTasks', 'user'));
+        return view('tasks.index', compact('tasks', 'pinnedTasks', 'upcomingTasks', 'ongoingTasks', 'missedTasks', 'user', 'assignedTasks'));
     }
 
     public function create() { return view('tasks.index', ['tasks' => $tasks]); }
