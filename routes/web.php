@@ -34,12 +34,10 @@ Route::post('/tasks', [TasksController::class, 'store']); // This is route for c
 
 Route::delete('/tasks/{task}', [TasksController::class, 'destroy'])->name('tasks.destroy');
 Route::put('/tasks/{task}/{pinned}', [TasksController::class, 'update']); // This is route for editing specific task
-// Route::put('/tasks/{task}/{unpinned}', [TasksController::class, 'update']); // This is route for editing specific task
+
 Route::get('/tasks/{task}/edit', [TasksController::class, 'edit']); // This is edit page 
 
 Route::get('/share/{task}', [TasksController::class, 'share']);
 Route::get('/sendbasicemail', [MailController:: class, 'basic_email']);
 Route::post('/sendhtmlemail/{title}/{content}/{name}', [MailController:: class, 'html_email']);
 Route::get('/sendattachmentemail', [MailController:: class,'attachment_email']);
-
-Route::get('/assign', [TasksController::class, 'assign'])->name('assign.assign'); 

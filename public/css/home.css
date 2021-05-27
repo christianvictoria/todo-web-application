@@ -134,3 +134,34 @@
     display: grid;
     place-items: center;
  }
+
+ .vl {
+    border-left: 2px solid rgb(189, 189, 189);
+    height: 500px;
+  }
+
+  hr.hr-text {
+      position: relative;
+      border-left: 500px;
+      height: 1px;
+      background: #999;
+  }
+  
+  hr.hr-text::before {
+      content: attr(data-content);
+      display: inline-block;
+      background: #fff;
+      font-weight: bold;
+      font-size: 0.85rem;
+      color: #999;
+      border-radius: 30rem;
+      padding: 0.2rem 2rem;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+  }
+  
+  .text-uppercase {
+    letter-spacing: .1em;
+  }

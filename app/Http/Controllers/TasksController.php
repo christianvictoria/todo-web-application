@@ -6,6 +6,8 @@ use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 
 class TasksController extends Controller
 {
@@ -22,6 +24,10 @@ class TasksController extends Controller
         $upcomingTasks = $user->tasks()->where([['todo_deadline','>',"$date_today"], ['todo_deadline', '<=', "$date_tree_days_ahead"]])->get();
         $ongoingTasks = $user->tasks()->where([['todo_deadline','=',"$date_today"]])->get();
         $missedTasks = $user->tasks()->where([['todo_deadline','<',"$date_today"]])->get();
+
+        // for assign 
+
+
         return view('tasks.index', compact('tasks', 'pinnedTasks', 'upcomingTasks', 'ongoingTasks', 'missedTasks', 'user'));
     }
 
@@ -51,10 +57,13 @@ class TasksController extends Controller
         return redirect('/tasks');
     }
 
-    public function edit(Task $task) { return view('tasks.edit', ['task' => $task]); }
+    public function edit(Task $task) { 
+        $allUsers = DB::table('users')->get();
+        return view('tasks.edit', ['task' => $task, 'allUsers'=> $allUsers]); }
 
     public function share(Task $task) { 
         $user = User::find(Auth::id());
+ 
         return view('tasks.share', ['task' => $task, 'user' => $user]); }
 
     public function assign(Task $task){
@@ -63,10 +72,11 @@ class TasksController extends Controller
 
     public function update(Task $task, $pinned, Request $request)
     {   
-        $arr = array("important", "notimportant");
+        $arr = array("important", "notimportant", "assigned");
         if (in_array($pinned, $arr)) {
             if($pinned == $arr[0]) $task->update(['fld_isImportant' => 1]);
             if($pinned == $arr[1]) $task->update(['fld_isImportant' => 0]);
+            if($pinned != $arr[0] && $arr[1]) $task->update(['assignedTo' => $pinned]);
             return redirect('/tasks');
         }
         request()->validate([
@@ -76,7 +86,8 @@ class TasksController extends Controller
         $task->update([
             'todo_title' => $request->todo_title,
             'todo_content' => $request->todo_content,
-            'todo_deadline' => $request->todo_deadline
+            'todo_deadline' => $request->todo_deadline,
+            'assignedTo' => $request->userID
         ]);
         if($request->hasFile('img')){
             $file = $request->file('img')->getClientOriginalName();

@@ -20,7 +20,7 @@ class CreateTasksTable extends Migration
             $table->text('todo_content');
             $table->string('todo_attachment')->nullable();
             $table->date('todo_deadline')->nullable();
-            $table->integer('assignedTo')->unsigned();
+            $table->integer('assignedTo')->unsigned()->nullable();
             $table->integer('fld_isImportant')->default(0);
             $table->integer('fld_isDeleted')->default(0);
             $table->timestamps();

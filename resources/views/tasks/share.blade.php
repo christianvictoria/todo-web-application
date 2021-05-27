@@ -39,8 +39,8 @@
             </div>
         </nav>
         <div class="container">
-            <div class="row align-items-center is-centered">
-                <div class="col-md-6">
+            <div class="row is-centered">
+                <div class="col-md-8 md-auto">
                     <form method="POST" action="/sendhtmlemail/{{ $task->todo_title }}/{{ $task->todo_content }}/{{ $user->name }}">
                         @method('POST')
                         @csrf
@@ -54,7 +54,6 @@
                         <button type="submit" class="btn btn-primary">Share Task</button>
                     </form>
                 </div>
-            </div>
             </div>
         </div>
     </body>
