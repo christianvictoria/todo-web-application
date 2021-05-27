@@ -39,18 +39,23 @@
             </div>
         </nav>
         <div class="container">
-            <form method="POST" action="/sendhtmlemail/{{ $task->todo_title }}/{{ $task->todo_content }}/{{ $user->name }}">
-                @method('POST')
-                @csrf
-                <div class="form-group">
-                    <label for="email" class="col-form-label">Recipient:</label>
-                    <input type="email" class="form-control mb-2 @error('email') is-invalid @enderror" id="email" name="email" placeholder="Input Email Here">
-                    @error('email')
-                        <p role="alert" class="alert alert-dark">{{ $message }}</p>
-                    @enderror
+            <div class="row align-items-center is-centered">
+                <div class="col-md-6">
+                    <form method="POST" action="/sendhtmlemail/{{ $task->todo_title }}/{{ $task->todo_content }}/{{ $user->name }}">
+                        @method('POST')
+                        @csrf
+                        <div class="form-group">
+                            <label for="email" class="col-form-label">Recipient:</label>
+                            <input type="email" class="form-control mb-2 @error('email') is-invalid @enderror" id="email" name="email" placeholder="Input Email Here">
+                            @error('email')
+                                <p role="alert" class="alert alert-dark">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <button type="submit" class="btn btn-primary">Share Task</button>
+                    </form>
                 </div>
-                <button type="submit" class="btn btn-primary">Share Task</button>
-            </form>
+            </div>
+            </div>
         </div>
     </body>
 </html>

@@ -125,3 +125,8 @@
      padding-left: 8px;
      padding-top: 7px;
  }
+
+ .is-centered{
+    display: grid;
+    place-items: center;
+ }
