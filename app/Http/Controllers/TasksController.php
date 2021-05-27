@@ -25,9 +25,6 @@ class TasksController extends Controller
         $ongoingTasks = $user->tasks()->where([['todo_deadline','=',"$date_today"]])->get();
         $missedTasks = $user->tasks()->where([['todo_deadline','<',"$date_today"]])->get();
 
-        // for assign 
-
-
         return view('tasks.index', compact('tasks', 'pinnedTasks', 'upcomingTasks', 'ongoingTasks', 'missedTasks', 'user'));
     }
 
