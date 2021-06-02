@@ -69,7 +69,8 @@ class TasksController extends Controller
 
     public function assign(Task $task){
         $user = User::find(Auth::id());
-        return view('tasks.assign', ['task' => $task, 'user' => $user]);  }
+        return view('tasks.assign', ['task' => $task, 'user' => $user]);  
+    }
 
     public function update(Task $task, $pinned, Request $request)
     {   
