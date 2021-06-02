@@ -78,7 +78,6 @@ class TasksController extends Controller
         if (in_array($pinned, $arr)) {
             if($pinned == $arr[0]) $task->update(['fld_isImportant' => 1]);
             if($pinned == $arr[1]) $task->update(['fld_isImportant' => 0]);
-            if($pinned != $arr[0] && $arr[1]) $task->update(['assignedTo' => $pinned]);
             return redirect('/tasks');
         }
         request()->validate([
